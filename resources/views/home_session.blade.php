@@ -44,49 +44,7 @@
 
     <div class=container-fluid>
 
-        <section class="header">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-4">
-                <div class="container-fluid mr-5">
-                    <a class="navbar-brand">Alex's Q&A</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse container-md" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-link " href="/question">Fammi una domanda</a>
-                        </div>
-                    </div>
-                    <div class="navbar-nav ml-5">
-                        <a class="nav-link disabled ml-5">@isset($log_email) {{ $log_email }} @endisset</a>;
-                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#Modal">Logout</button>
-                    </div>
-                </div>
-            </nav>
-
-            <!--  Logout Modal  -->
-
-            <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ModalLabel">Logout</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Sei sicuro di voler effettuare il logout?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                            <a href="/logout" type="button" class="btn btn-primary">Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-
+        <x-header.show-header />
 
         <section class="main">
             <div class="container-fluid text-center" style="padding-top: 7rem;">
@@ -166,18 +124,6 @@
                     window.location = $(this).data("href");
             });
         });
-
-        ////   Filtare la tabella delle domande (non funziona) /////
-
-        /*       jQuery(document).ready(function() {
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-     });
-*/
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>

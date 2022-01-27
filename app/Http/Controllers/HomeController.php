@@ -25,7 +25,7 @@ class HomeController extends Controller
             
             return view('home_session')
                 ->with('question', $list_question)
-                ->with('log_email' , $log_email)
+                ->with('log_email', $log_email)
                 ->with('log_id' , $log_id);
         }
         else

@@ -62,25 +62,7 @@
 
 <body>
 
-
-    <section class="header">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-3">
-                <div class="container-md">
-                    <a class="navbar-brand">Alex's Q&A</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse justify-content-end h5" id="navbarNav">
-                        <div class="navbar-nav">
-                            <a class="nav-link" href="/login">Accedi</a>';
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </section>
+    <x-header.show-header/>
 
     <section class="main mb-5">
         <div class="container-fluid h-100">
