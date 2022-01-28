@@ -13,10 +13,13 @@
                 </div>
             </div>
             <div class="navbar-nav ml-5">
-                @guest<a class="nav-link" href="/login">Accedi</a>@endguest
-                <a class="nav-link disabled ml-5">{{ $log_email ?? '' }} </a>
+                @guest
+                    <a class="nav-link" href="/login">Accedi</a>
+                @endguest
                 @auth
+                <a class="nav-link disabled ml-5">{{ Auth::user()->name ?? '' }}</a>
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                @endauth
             </div>
         </div>
     </nav>
@@ -40,6 +43,6 @@
             </div>
         </div>
     </div>
-    @endauth
+    
 
 </section>

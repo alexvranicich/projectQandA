@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\User;
@@ -12,33 +13,25 @@ class QuestionController extends Controller
     public function question_show(Request $request)
     {
         
-        if($request->session()->missing('log')){
+        if(Auth::guest()){
             return redirect('/home');
         }
-
-        $log_id = session()->get('log'); 
-        $log_email = User::IdtoEmail($log_id);
-
-        return view('register')
-                -> with('log_email', $log_email); 
+        else
+            return view('other-view.question');
     }
 
 
     /////   Gestisce l'inserimento di nuove domande   /////
 
 
-    public function question_validation(QuestionRequest $request)
+    public function question_store(QuestionRequest $request)
     {
         
-        if ($request->session()->missing('log')) {
+        if (Auth::guest()) {
             return redirect('/home');
         }
 
-        session()->get('log');
-        
         $validated = $request -> validate();
-
-        Question::storeQuestion($validated);
 
         return redirect('/home')
                 ->with('success', 'Domanda inserita correttamente');

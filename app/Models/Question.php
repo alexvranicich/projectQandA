@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\QuestionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Question extends Model
@@ -24,21 +26,24 @@ class Question extends Model
         return $this -> hasMany('answers');
     }
 
+    ///  Tramite join listo le risposte e i loro rispettivi autori  ///
 
     public static function list_questions()
     {
         return DB::table('questions')
                 ->join('users', 'users.id', '=', 'questions.user_id')
-                ->select('questions.id', 'users.email', 'questions.title', 'questions.content')
+                ->select('questions.id', 'users.name', 'questions.title', 'questions.content')
                 ->get();
     }
 
-    public static function storeQuestion(array $data)
+    ///  Salva i dati della domanda nel database  ///
+
+    public static function storeQuestion(QuestionRequest $request)
     {
         return Question::create([
-            'user_id' => session()->get('log'),
-            'title' => $data['title'],
-            'content' => $data['content'],
+            'user_id' => Auth::user()->id,
+            'title' => $request -> title,
+            'content' => $request -> content,
         ]);
     }
 

@@ -10,36 +10,40 @@ class LoginController extends Controller
 {
     public function login_show()
     {
-        return view('login');
+        if (Auth::check()) {
+            
+            Auth::logout();
+            session()->invalidate();
+            session()->regenerateToken();
+        }
+
+        return view('auth-view.login');
     }
 
     public function login_validation(LoginRequest $request){
 
 
-        if ($request->session()->has('log')) 
+        if (Auth::check()) 
         {
-            $request->session()->forget('log');
+            Auth::logout();
             $request->session()->invalidate();
+            $request->session()->regenerateToken();
         }
 
         $credentials = $request->getCredentials();
 
-        $log_id = User::EmailtoId($credentials['email']);
-
-        
         ///  Attempt controlla se le cresenziali passate esistono nel database   ///
-        ///  In caso affermativo restituisce true ed effettua il login            /// 
+        ///  In caso affermativo attempt restituisce true ed effettua automaticamnete il login  /// 
         
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            $request->session()->put('log', $log_id);
             
             return redirect('/home');
         }
         
         return back()->withErrors([
-            'exist' => '*Mail o password errati, riprova',
+            'exist' => '* Mail o password errati, riprova *',
         ]);
         
 

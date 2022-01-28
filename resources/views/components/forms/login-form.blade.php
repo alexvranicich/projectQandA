@@ -1,4 +1,4 @@
-<form action="{{ route('login.perform') }}" method="post">
+<form action="{{ route('login.validate') }}" method="post">
 
        @csrf
 
@@ -22,4 +22,4 @@
         </div>
 </form>
 
-    <
+    

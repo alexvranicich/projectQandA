@@ -23,9 +23,11 @@ Route::get('/home', [HomeController::class, 'home']);
 Route::get('/logout',[HomeController::class, 'logout']);
 
 Route::get('/register' , [RegisterController::class, 'register_show'])->name('register.show');
-Route::post('/register', [RegisterController::class, 'register_validation'])->name('register.perform');
+Route::post('/register', [RegisterController::class, 'register_validation'])->name('register.store');
 
 Route::get('/login' , [LoginController::class, 'login_show'])->name('login.show');
-Route::post('/login', [LoginController::class, 'login_validation'])->name('login.perform');
+Route::post('/login', [LoginController::class, 'login_validation'])->name('login.validate');
 
+Route::get('/question', [QuestionController::class, 'question_show'])->name('question.show');
+Route::post('/question', [QuestionController::class, 'question_store'])->name('question.store');
 

@@ -36,4 +36,12 @@ class LoginRequest extends FormRequest
             'password' => $this->get('password')
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'Inserire la propria mail',
+            'password.required' => 'Inserire la password',
+        ];
+    }
 }

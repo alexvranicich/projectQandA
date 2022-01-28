@@ -18,19 +18,17 @@ class HomeController extends Controller
 
         ///  Si guarda se è presente una variabile di sessione per decidere su che home finire ///
         
-        if ($request->session()->has('log'))
+        if (Auth::check())
         {
-            $log_id = session()->get('log');
-            $log_email = User::IdtoEmail($log_id);
-            
-            return view('home_session')
+            $log_id = Auth::user()->id;
+           
+            return view('home-view.home_session')
                 ->with('question', $list_question)
-                ->with('log_email', $log_email)
                 ->with('log_id' , $log_id);
         }
         else
         {
-            return view('home')                           
+            return view('home-view.home')                           
                 ->with('question', $list_question);
         }
     }

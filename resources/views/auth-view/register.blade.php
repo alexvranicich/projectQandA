@@ -50,7 +50,7 @@
                     <div class="log-form">
                         <div class="card-body">
 
-                            @error('exist')<div class="text-danger">*Questa mail è già registrata, provane una nuova o effettua il login</div>@enderror
+                            @error('exists')<div class="text-danger">* Questa mail è già registrata, provane una nuova o effettua il login *</div>@enderror
 
                             <x-forms.register-form />
                         

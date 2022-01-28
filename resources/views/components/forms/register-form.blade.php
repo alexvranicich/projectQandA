@@ -1,5 +1,5 @@
-
-<form action="{{ route('register.perform') }}" method="post">
+<div>   
+    <form action="{{ route('register.store') }}" method="post">
         @csrf
 
         <h1 class="mb-5">Registrati</h1>
@@ -28,4 +28,5 @@
         <div class="d-flex mt-4 pb-4">
             <a href="/login" class="btn btn-outline-secondary" role="button" data-bs-toggle="button">Hai già un account?</a>
         </div>
-</form>
+    </form>
+</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class QuestionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -25,7 +26,17 @@ class QuestionRequest extends FormRequest
     {
         return [
             'title' => 'required | min:3 | max: 100',
-            'content' => 'required | max:200',
+            'content' => 'required | max: 200',
+        ]
+        +
+        ( $this->isMethod('POST') ? $this->store() );
+        
+    }
+
+    public function store()
+    {
+        return [
+            'id_user' => Auth::user()->id,
         ];
     }
 }

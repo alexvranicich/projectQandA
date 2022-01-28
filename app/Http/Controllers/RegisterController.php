@@ -11,7 +11,7 @@ class RegisterController extends Controller
 {
     public function register_show()
     {
-        return view('register');
+        return view('auth-view.register');
     }
 
     public function register_validation(RegisterRequest $request)
@@ -19,10 +19,11 @@ class RegisterController extends Controller
 
         /// Se presente una sessione la interrompo per creare un nuova variabile di sessione ///
         
-        if ($request->session()->has('log')) 
+        if (Auth::check()) 
         {
-            $request->session()->forget('log');
+            Auth::logout();
             $request->session()->invalidate();
+            $request->session()->regenerateToken();
         }
 
         //// Valida form registrazione ////
@@ -36,8 +37,7 @@ class RegisterController extends Controller
         //// Logga l'utente e salva variabile dell'utente //// 
 
         Auth::login($user);
-        $request->session()->put('log', $user['id']);
-
+       
         //// Return home route, it choose view home //// 
 
         return redirect('/home')

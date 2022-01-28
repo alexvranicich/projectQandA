@@ -34,4 +34,15 @@ class RegisterRequest extends FormRequest
     }
 
 
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Inserire il proprio nome',
+            'email.required' => 'Inserire una mail valida',
+            'password.required' => 'Inserire una password valida',
+        ];
+    }
+
+
 }
