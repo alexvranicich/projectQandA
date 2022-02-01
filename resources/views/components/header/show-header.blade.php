@@ -1,4 +1,4 @@
-<section class="header">
+
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-4">
         <div class="container-fluid mr-5">
             <a class="navbar-brand">Alex's Q&A</a>
@@ -25,7 +25,7 @@
     </nav>
 
     <!--  Logout Modal  -->
-    
+
     <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -43,6 +43,5 @@
             </div>
         </div>
     </div>
-    
 
-</section>
+

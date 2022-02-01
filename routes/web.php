@@ -31,3 +31,6 @@ Route::post('/login', [LoginController::class, 'login_validation'])->name('login
 Route::get('/question', [QuestionController::class, 'question_show'])->name('question.show');
 Route::post('/question', [QuestionController::class, 'question_store'])->name('question.store');
 
+Route::get('/answer', [AnswerController::class, 'answer_show'])->name('answer.show');
+Route::post('/answer', [AnswerController::class, 'answer_store'])->name('answer.store');
+

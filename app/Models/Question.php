@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use App\Http\Requests\QuestionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +39,7 @@ class Question extends Model
 
     ///  Salva i dati della domanda nel database  ///
 
-    public static function storeQuestion(QuestionRequest $request)
+    public static function storeQuestion(Request $request)
     {
         return Question::create([
             'user_id' => Auth::user()->id,
@@ -46,8 +47,4 @@ class Question extends Model
             'content' => $request -> content,
         ]);
     }
-
-
-
-
 }

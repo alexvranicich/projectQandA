@@ -1,20 +1,19 @@
 <html lang="it">
 
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Alex's Q&A</title>
+        <title>Alex's Q&A</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
-    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
+        <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
 
 <style>
@@ -62,7 +61,7 @@
 
 <body>
 
-    <x-header.show-header/>
+    <x-header.show-header />
 
     <section class="main mb-5">
         <div class="container-fluid h-100">
@@ -85,37 +84,13 @@
         </div>
     </section>
 
-    <section class="table_question" style="padding-top: 12rem;">
-        <div class="container-fluid text-center">
-            <h3>Intanto ecco alcune delle domande che potrai trovare</h3>
+    <section class="table-form mt-5 pt-5">
+        <div class="container-fluid text-center mt-5 pt-5">
 
-            <table class="table table-striped text-center align-middle mt-5">
-                <thead>
-                    <tr>
-                        <th scope="col">Argomento</th>
-                        <th scope="col">Domanda</th>
-                </thead>
+            <h3>Intanto ecco alcune domande interessanti</h3>
+            <h5>Cliccaci per vedere le risposte</h5>
 
-                <?php
-                if (is_array($question)) {
-                    foreach ($question as $row) {
-
-                        echo '<tbody>
-                                <tr>
-                                    <td scope="row"> ' . $row->title . ' </td>
-                                    <td>' . $row->content . '</td>
-                                </tr>
-                            </tbody>';
-                    }
-                } else {
-                    echo  '<tbody>
-                                <tr>
-                                    <td scope="row">Nessun Risultato</td>
-                                </tr>
-                            </tbody>';
-                }
-                ?>
-            </table>
+            @include('components.tables.question-table',['questions' => $questions])
 
         </div>
     </section>

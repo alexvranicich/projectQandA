@@ -27,16 +27,6 @@ class QuestionRequest extends FormRequest
         return [
             'title' => 'required | min:3 | max: 100',
             'content' => 'required | max: 200',
-        ]
-        +
-        ( $this->isMethod('POST') ? $this->store() );
-        
-    }
-
-    public function store()
-    {
-        return [
-            'id_user' => Auth::user()->id,
         ];
     }
 }

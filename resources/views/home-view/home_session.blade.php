@@ -46,6 +46,13 @@
 
         <x-header.show-header />
 
+        @if (session('success'))
+            <div class="alert alert-success">
+                 <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ session('success') }}</strong>
+            </div>
+        @endif
+
         <section class="main">
             <div class="container-fluid text-center" style="padding-top: 7rem;">
                 <h2>Cerca le domande che preferisci </h2>
@@ -63,58 +70,15 @@
 
         <div id="error"></div>
 
-        <section class="table-form mt-5 pt-5">
-            <div class="container-fluid text-center mt-5">
-                <h3>Intanto ecco alcune domande interessanti</h3>
-                <h5>Cliccaci per vedere le risposte</h5>
-
-                <table class="table table-hover text-center align-middle" style="margin-top: 7rem;">
-                    <thead>
-                        <tr>
-                            <th scope="col">Chiesta da</th>
-                            <th scope="col">Argomento</th>
-                            <th scope="col">Domanda</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-
-                    <?php
-                    if (is_array($question)) {
-                        foreach ($question as $row) {
-                            $id = $row->id;
-                            $email = $row->email;
-                            $title = $row->title;
-                            $content = $row->content;
-                            echo '<tbody id="MyTable">
-                                    <tr class="clickable-row" style="cursor:pointer;" data-href="/answers?id=' . $id . '">
-                                        <td scope="row" id="email" value=' . $email . ' >' . $email . '</td>
-                                        <td> ' . $title . ' </td>
-                                        <td>' . $content . '</td>
-                                        <td> 
-                                            <form method = "post" action="/answerForm">
-                                                <input type="submit" name="question-id" class="btn btn-outline-success p-4" value = "Rispondi" /> 
-                                                <input type="hidden" name="question-id" value = ' . $id . ' />
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </tbody>';
-                        }
-                    }
-                    ?>
-                </table>
-            </div>
-        </section>
+        @include('components.tables.question-table',['questions' => $questions])
 
     </div>
 
     <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href); // evita la conferma del reinvio del modulo
-        }
 
-        ////    Rende l'intera riga cliccabile  /////  
+        ////    Rende l'intera riga cliccabile  /////
 
-        var log_id = <?php echo $log_id ?>;
+        var log_id = {{ Auth::user()->id }};
 
         jQuery(document).ready(function($) {
             $(".clickable-row").click(function() {

@@ -5,31 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
-use App\Models\User;
 
 class HomeController extends Controller
 {
-    
-    public function home(Request $request){
+
+    public function home(){
 
          /// Lista tutte le domande presenti  ///
 
-        $list_question = Question::list_questions();
+        $questions = Question::list_questions();
 
         ///  Si guarda se è presente una variabile di sessione per decidere su che home finire ///
-        
+
         if (Auth::check())
         {
             $log_id = Auth::user()->id;
-           
+
             return view('home-view.home_session')
-                ->with('question', $list_question)
+                ->with('questions', $questions)
                 ->with('log_id' , $log_id);
         }
         else
         {
-            return view('home-view.home')                           
-                ->with('question', $list_question);
+            return view('home-view.home')
+                ->with('questions', $questions);
         }
     }
 

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
-use App\Models\User;
+
 
 class QuestionController extends Controller
 {
-    public function question_show(Request $request)
+    public function question_show()
     {
-        
+
         if(Auth::guest()){
             return redirect('/home');
         }
@@ -24,14 +23,19 @@ class QuestionController extends Controller
     /////   Gestisce l'inserimento di nuove domande   /////
 
 
-    public function question_store(QuestionRequest $request)
+    public function question_store(Request $request)
     {
-        
+
         if (Auth::guest()) {
             return redirect('/home');
         }
 
-        $validated = $request -> validate();
+        $this->validate($request, [
+            'title' => 'required | min:3 | max: 100',
+            'content' => 'required | max: 200',
+        ]);
+
+        Question::storeQuestion($request);
 
         return redirect('/home')
                 ->with('success', 'Domanda inserita correttamente');

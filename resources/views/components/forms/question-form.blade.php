@@ -21,6 +21,7 @@
             <div class="col-md-3 offset-md-1">
                 <button name="question_form" type="submit" class="btn btn-outline-success btn-block p-5" style="margin-top:5rem;">Manda</button>
             </div>
+
         </div>
     </form>
 </div>

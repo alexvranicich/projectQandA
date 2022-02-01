@@ -11,7 +11,7 @@ class LoginController extends Controller
     public function login_show()
     {
         if (Auth::check()) {
-            
+
             Auth::logout();
             session()->invalidate();
             session()->regenerateToken();
@@ -23,7 +23,7 @@ class LoginController extends Controller
     public function login_validation(LoginRequest $request){
 
 
-        if (Auth::check()) 
+        if (Auth::check())
         {
             Auth::logout();
             $request->session()->invalidate();
@@ -33,20 +33,20 @@ class LoginController extends Controller
         $credentials = $request->getCredentials();
 
         ///  Attempt controlla se le cresenziali passate esistono nel database   ///
-        ///  In caso affermativo attempt restituisce true ed effettua automaticamnete il login  /// 
-        
+        ///  In caso affermativo attempt restituisce true ed effettua automaticamnete il login  ///
+
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            
+
             return redirect('/home');
         }
-        
+
         return back()->withErrors([
-            'exist' => '* Mail o password errati, riprova *',
+            'error' => '* Mail o password errati, riprova *',
         ]);
-        
+
 
     }
-    
+
 }

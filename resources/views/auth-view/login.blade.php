@@ -50,9 +50,7 @@
                 <div class="log-form col-md-7 bg-white">
                     <div class="card-body">
 
-                        @error('exist')<div class="text-danger">{{ $message }}</div>@enderror
-
-                        <x-forms.login-form />
+                        @include('components.forms.login-form')
 
                     </div>
                 </div>
