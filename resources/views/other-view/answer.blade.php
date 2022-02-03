@@ -9,12 +9,12 @@
 
     <title>Alex's Q&A</title>
 
-    <!-- Fonts -->
+    <!-- Fonts & Scripts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
     <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -48,23 +48,34 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="container-md">
-                        <div class="mail p-3 w-100" style="color:red">
+
+                        @isset($errorMsg)
+                        <div class="mail p-3 w-100 text-danger">
                             <h5>
-                                @isset($error) {{ $message }}  @endisset
-                                @empty($error) Rispondi a ---> $email_user_question  @endempty
+                               {{ $errorMsg }}
                             </h5>
                         </div>
+                        @endisset
+
+                        @empty($errorMsg)
+                        <div class="mail p-2 w-100">
+                            <h5>
+                                @empty($errorMsg) Rispondi a <i>{{ $name }}</i> @endempty
+                            </h5>
+                        </div>
+                        @endempty
+
                         <hr>
+
                         <div class="question p-5 w-100">
-                            <h2> $question_content  </h2>
+                            <h2> {{ $questions->content }}  </h2>
                         </div>
 
                         <hr>
 
-                        <p class='error text-danger'><?php if (isset($notNull)) echo $notNull; ?></p>
                         <div class="answer p-5">
 
-                            <x-forms.answer-from />
+                            @include('components.forms.answer-form', ['questions' => $questions])
 
                         </div>
                     </div>

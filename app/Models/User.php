@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-   
+
     ///  Funzion per hashare la password  ////
 
     public function setPasswordAttribute($password)
@@ -82,17 +82,17 @@ class User extends Authenticatable
 
     /////  Dato l'id restituisce la mail dell'utente  //////
 
-    public static function IdtoEmail($id)
+    public static function IdtoName($id)
     {
         return DB::table('users')
-                ->select('email')
+                ->select('name')
                 ->where('id', '=', $id)
-                ->first()->email;
+                ->first()->name;
     }
 
 
     public static function getUser($id)
-    {  
+    {
         return DB::table('users')
                 ->where('id', '=' , $id)
                 ->get();

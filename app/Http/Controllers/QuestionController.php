@@ -32,7 +32,7 @@ class QuestionController extends Controller
 
         $this->validate($request, [
             'title' => 'required | min:3 | max: 100',
-            'content' => 'required | max: 200',
+            'content' => 'required | min:5 | max: 1000',
         ]);
 
         Question::storeQuestion($request);

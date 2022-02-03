@@ -35,7 +35,7 @@
 <body>
 
         <x-header.show-header />
-    
+
         <section class="main container-fluid">
 
             <div class="row">
@@ -48,11 +48,12 @@
 
                         <hr>
                         @error('exists')<div class="text-danger">* Compila tutti i dati *</div>@enderror
-                        <x-forms.question-form />
+
+                        @include('components.forms.question-form')
 
                     </div>
                 </div>
-            
+
                 <div class=" col-md-4 image">
                      <img src="https://images.unsplash.com/photo-1536995769641-12e9f98fd223?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGhpbmtpbmclMjBtYW58ZW58MHwxfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
                 </div>

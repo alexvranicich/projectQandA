@@ -1,6 +1,6 @@
 
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark p-4">
-        <div class="container-fluid mr-5">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark p-4">
+        <div class="container-fluid ">
             <a class="navbar-brand">Alex's Q&A</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

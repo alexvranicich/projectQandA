@@ -15,21 +15,11 @@ class HomeController extends Controller
 
         $questions = Question::list_questions();
 
-        ///  Si guarda se è presente una variabile di sessione per decidere su che home finire ///
+        ///  La gestione della home avviene direttamente nelle view ///
 
-        if (Auth::check())
-        {
-            $log_id = Auth::user()->id;
-
-            return view('home-view.home_session')
-                ->with('questions', $questions)
-                ->with('log_id' , $log_id);
-        }
-        else
-        {
-            return view('home-view.home')
+        return view('home-view.home')
                 ->with('questions', $questions);
-        }
+
     }
 
 

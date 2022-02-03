@@ -1,50 +1,29 @@
+<!DOCTYPE html>
 <html lang="it">
 
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Alex's Q&A</title>
+    <title>Alex's Q&A</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
-        <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 
 <style>
+
     html,
     body {
         font-family: 'Montserrat', sans-serif;
-    }
-
-    #btn_log {
-        background-image: url('https://images.unsplash.com/photo-1522098605161-cc0c1434c31a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBlb3BsZSUyMHRhbGtpbmd8ZW58MHwxfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') !important;
-        background-size: cover;
-        color: white;
         padding-top: 4rem;
-        font-size: 3rem;
-        font-weight: bold;
-        transition: transform .2s;
-    }
-
-    #btn_reg {
-        background-image: url('https://images.unsplash.com/photo-1535295972055-1c762f4483e5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHBlb3BsZSUyMHdobyUyMHRhbGtzfGVufDB8MXwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') !important;
-        background-size: cover;
-        color: white;
-        padding-top: 4rem;
-        font-size: 3rem;
-        font-weight: bold;
-        transition: transform .2s;
-    }
-
-    #btn_reg:hover,
-    #btn_log:hover {
-        transform: scale(1.2);
     }
 
     table td {
@@ -53,47 +32,46 @@
         text-align: center;
     }
 
-    .main {
-        margin-top: 8rem;
-        height: 30rem;
-    }
 </style>
 
 <body>
 
     <x-header.show-header />
 
-    <section class="main mb-5">
-        <div class="container-fluid h-100">
 
-            <div class="text-center">
-                <h1>Benvenuto nel Q&A del momento</h1>
-                <h3>Ti sei già unito a noi?</h3>
-            </div>
+        @guest
 
-            <div class="container-md mt-5 h-100 text-center">
-                <div class="row justify-content-around h-100">
-                    <div class="col-md-4">
-                        <a href="/login" role="button" id="btn_log" class="btn h-100 w-100 alingn-text-middle border border-2 border-light">ACCEDI</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="/register" role="button" id="btn_reg" class="btn btn-lg h-100 w-100 border border-2 border-light">REGISTRATI</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            @include('home-view.session-home-view.home-guest')
 
-    <section class="table-form mt-5 pt-5">
-        <div class="container-fluid text-center mt-5 pt-5">
+        @endguest
 
-            <h3>Intanto ecco alcune domande interessanti</h3>
-            <h5>Cliccaci per vedere le risposte</h5>
+        @auth
 
-            @include('components.tables.question-table',['questions' => $questions])
+            @include('home-view.session-home-view.home-auth')
 
-        </div>
-    </section>
+        @endauth
+
+
+    @auth
+    <script>
+    ////    Rende l'intera riga cliccabile  /////
+
+        var log_id = {{ Auth::user()->id }};
+
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                if ($(".clickable-row #email").val() == log_id) {
+                    $('#errors').empty().text('Non puoi rispondere ad una tua domanda');
+                } else
+                    window.location = $(this).data("href");
+            });
+        });
+
+    </script>
+    @endauth
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 
 </body>
 
