@@ -27,19 +27,31 @@ class Rating extends Model
     }
 
 
+    public static function ValidRatingInput($user_id, $answer_id, $rating)
+    {
+        if ($user_id !== '' || $answer_id !== '' || $rating !== '' || $rating > 5  || $rating < 1)
+            return true;
+    }
+
+
     public static function UserAlreadyRate($user_id, $answer_id)
     {
         $check = DB::table('ratings')
-                ->where('user_id', '=', $user_id)->where('answer_id', '=', "'$answer_id'", true)->get();
+                ->where('user_id', '=', $user_id)
+                ->where('answer_id', '=', $answer_id)
+                ->get();
+
         return count($check) > 0;
     }
 
 
-    ////    Calcolo del Rating Medio  ////
+    ////    Calcolo del Rating Medio   ////
 
     public function AvgRating($answer_id)
     {
-        $answers = Rating::where('answer_id', '=', "'$answer_id'")->get();
+        $answers = DB::table('ratings')
+                    ->where('answer_id', '=', $answer_id)
+                    ->get();
 
         if (is_array($answers)) {
             $count = count($answers);

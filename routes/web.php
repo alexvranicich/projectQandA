@@ -7,6 +7,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Rating;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,6 @@ Route::post('/question', [QuestionController::class, 'question_store'])->name('q
 
 Route::get('/answer', [AnswerController::class, 'answer_show'])->name('answer.show');
 Route::post('/answer', [AnswerController::class, 'answer_store'])->name('answer.store');
+Route::get('/answerList', [AnswerController::class, 'answer_list'])->name('answer.list');
 
+Route::post('/rating', [RatingController::class, 'rating_js'])->name('rating.validate');

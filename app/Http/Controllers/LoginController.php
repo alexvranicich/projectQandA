@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -32,13 +34,12 @@ class LoginController extends Controller
 
         $credentials = $request->getCredentials();
 
-        ///  Attempt controlla se le cresenziali passate esistono nel database   ///
+        ///  Attempt controlla se le credenziali passate esistono nel database   ///
         ///  In caso affermativo attempt restituisce true ed effettua automaticamnete il login  ///
 
         if (Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-
             return redirect('/home');
         }
 

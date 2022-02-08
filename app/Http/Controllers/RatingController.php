@@ -3,30 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Rating;
 
 
 class RatingController extends Controller
 {
-    public function rating(Request $request)
+    public function rating_js(Request $request)
     {
 
         if (Auth::guest()) {
             return redirect('/home');
         }
 
-        $user_id = $request->request->get('id_user');
-        $answer_id = $request->request->get('id_answer');
-        $rating = $request->request->get("rating");
+        $user_id = $request->get('user_id');
+        $answer_id = $request->get('answer_id');
+        $rating = $request->get("rating");
 
-        if (Rating::UserAlreadyRate($user_id, $answer_id)) {
+        if (Rating::UserAlreadyRate($user_id, $answer_id))
+        {
             echo json_encode(array('success' => 0));
-        } else if (!Rating::NotNull($user_id, $answer_id, $rating)) {
+        }
+        else if (!Rating::ValidRatingInput($user_id, $answer_id, $rating))
+        {
             echo json_encode(array('success' => 1));
-        } else {
-            $data = Rating::create([
+        }
+        else
+        {
+            return Rating::create([
                 'user_id' => $user_id,
                 'answer_id' => $answer_id,
                 'rating' => $rating

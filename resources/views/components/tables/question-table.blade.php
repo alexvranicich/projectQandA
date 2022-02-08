@@ -1,7 +1,11 @@
 <div>
 
+    {{--  Tabella da autenticato  --}}
+
     @auth
     <table class="table table-hover text-center align-middle" style="margin-top: 5rem;">
+
+        <div id="error"></div>
 
         <thead>
             <tr>
@@ -22,8 +26,8 @@
 
             @foreach($questions as $question)
 
-            <tr class="clickable-row" style="cursor:pointer;" data-href="/answers?id={{ $question->id }}">
-                <td scope="row" id="name" value='{{ $question->name }}'>{{ ucfirst(trans($question->name)) }}</td>
+            <tr class="clickable-row" style="cursor:pointer;" data-href="/answerList?id={{ $question->id }}">
+                <td scope="row" id="user_id" value='{{ $question->user_id }}'>{{ ucfirst(trans($question->name)) }}</td>
                 <td>{{ ucfirst(trans($question->title)) }}</td>
                 <td>{{ ucfirst(trans($question->content)) }}</td>
                 <td>
@@ -40,6 +44,8 @@
 
     </table>
     @endauth
+
+    {{--  Tabella da guest  --}}
 
     @guest
     <table class="table table-hover align-middle mt-5">
@@ -75,3 +81,21 @@
 
 </div>
 
+@auth
+<script>
+
+    ////    Rende l'intera riga cliccabile  /////
+
+    var log_id = {{ Auth::user()->id }};
+
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            if ($(".clickable-row #user_id").val() == log_id) {
+                $('#error').empty().text('Non puoi rispondere ad una tua domanda');
+            } else
+            window.location = $(this).data("href");
+        });
+    });
+
+</script>
+@endauth

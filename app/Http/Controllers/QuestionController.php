@@ -16,7 +16,7 @@ class QuestionController extends Controller
             return redirect('/home');
         }
         else
-            return view('other-view.question');
+            return view('questions-view.questionForm');
     }
 
 
@@ -32,7 +32,7 @@ class QuestionController extends Controller
 
         $this->validate($request, [
             'title' => 'required | min:3 | max: 100',
-            'content' => 'required | min:5 | max: 1000',
+            'content' => 'required | min:3 | max: 1000',
         ]);
 
         Question::storeQuestion($request);

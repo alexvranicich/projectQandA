@@ -51,4 +51,11 @@ class Answer extends Model
         ]);
     }
 
+    public static function updateAnswer(Request $request)
+    {
+        return DB::table('answers')
+                ->where('user_id', Auth::user()->id)
+                ->update(['content' => $request->content]);
+    }
+
 }

@@ -39,8 +39,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'Inserire il proprio nome',
-            'email.required' => 'Inserire una mail valida',
-            'password.required' => 'Inserire una password valida',
+            'email.required' => 'Mail non valida',
+            'password.required' => 'La password deve avere almeno 4 caratteri',
         ];
     }
 
