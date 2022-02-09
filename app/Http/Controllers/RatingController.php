@@ -16,26 +16,26 @@ class RatingController extends Controller
             return redirect('/home');
         }
 
-        $user_id = $request->get('user_id');
-        $answer_id = $request->get('answer_id');
-        $rating = $request->get("rating");
+        $user_id = $request->user_id;
+        $answer_id = $request->answer_id;
+        $rating = $request->rating;
 
         if (Rating::UserAlreadyRate($user_id, $answer_id))
         {
-            echo json_encode(array('success' => 0));
+            return response()->json(['success' => 'Hai già risposto a questa domanda']);
         }
         else if (!Rating::ValidRatingInput($user_id, $answer_id, $rating))
         {
-            echo json_encode(array('success' => 1));
+            return response()->json(['success' => 'Problema coi dati, riprova più tardi']);
         }
         else
         {
-            return Rating::create([
+            Rating::create([
                 'user_id' => $user_id,
                 'answer_id' => $answer_id,
                 'rating' => $rating
             ]);
-            echo json_encode(array('success' => 2));
+            return response()->json(['success' => 'Risposta registrata con successo']);
         }
     }
 }

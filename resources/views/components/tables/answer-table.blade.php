@@ -1,32 +1,31 @@
 
-    @auth
     <table class="table table-default text-center align-middle">
 
         <thead>
-                <tr>
-                    <th scope="col">Risposta da</th>
-                    <th>Contenuto risposta</th>
-                    <th>Rating</th>
-                    <th>Valuta</th>
-                </tr>
-            </thead>
+            <tr>
+                <th scope="col">Risposta da</th>
+                <th>Contenuto risposta</th>
+                <th>Rating</th>
+                <th>Valuta</th>
+            </tr>
+        </thead>
 
         <tbody>
 
-            @foreach($answers as $answer)
+        @foreach($answers as $answer)
 
-                <tr>
-                    <td scope="row">{{ $answer->name }}</td>
-                    <td class="fw-bold" fs-3>{{ $answer->content }}</td>
-                    <td> 3.2 / 5</td>
-                    <td>
-                        <button type="button" class="open-modal btn btn-dark" data-useranswerid="{{ $answer->user_id }}" data-logid="{{ Auth::user()->id }}"  data-answerid="{{ $answer->id }}" data-bs-toggle="modal"  data-bs-target="#modal-rate-{{ $answer->id }}">Valuta</button>
-                    </td>
-                </tr>
+            <tr>
+                <td scope="row">{{ $answer->name }}</td>
+                <td class="fw-bold" fs-3>{{ $answer->content }}</td>
+                <td> 3.2 / 5</td>
+                <td>
+                    <button type="button" class="open-modal btn btn-dark" data-useranswerid="{{ $answer->user_id }}" data-logid="{{ Auth::user()->id }}"  data-answerid="{{ $answer->id }}" data-bs-toggle="modal"  data-bs-target="#modal-rate-{{ $answer->id }}">Valuta</button>
+                </td>
+            </tr>
 
         </tbody>
 
-        </table>
+    </table>
 
         <!--  Rating Modal  -->
 
@@ -48,14 +47,14 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="star-submit-{{ $answer->id }}" name="star-submit-{{ $answer->id }}">Vota</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="star-submit-{{ $answer->id }}" name="star-submit-{{ $answer->id }}">Vota</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    </div>
             </div>
         </div>
     </div>
 
-        @endforeach
-    @endauth
+    @endforeach
+
 
