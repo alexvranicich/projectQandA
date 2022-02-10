@@ -32,4 +32,15 @@ class HomeController extends Controller
 
         return redirect('/home');
     }
+
+
+    public function search(Request $request){
+        $search = Question::query();
+        if (request('term')) {
+            $search->where('name', 'Like', '%' . request('term') . '%');
+        }
+
+        return $search->orderBy('id', 'DESC')->paginate(10);
+    }
+
 }

@@ -22,11 +22,11 @@ class RatingController extends Controller
 
         if (Rating::UserAlreadyRate($user_id, $answer_id))
         {
-            return response()->json(['success' => 'Hai già risposto a questa domanda']);
+            return response()->json(['alert' => 'Hai già risposto a questa domanda']);
         }
         else if (!Rating::ValidRatingInput($user_id, $answer_id, $rating))
         {
-            return response()->json(['success' => 'Problema coi dati, riprova più tardi']);
+            return response()->json(['alert' => 'Problema coi dati, riprova più tardi']);
         }
         else
         {
@@ -35,7 +35,7 @@ class RatingController extends Controller
                 'answer_id' => $answer_id,
                 'rating' => $rating
             ]);
-            return response()->json(['success' => 'Risposta registrata con successo']);
+            return response()->json(['alert' => 'Risposta registrata con successo']);
         }
     }
 }

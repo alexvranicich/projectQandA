@@ -8,9 +8,9 @@
         var rating = 0;
 
     if (user_id === user_answer_id) {
-        alert("Non puoi rispondere ad una tua domanda");
+        alert("Non puoi valutare ad una tua domanda");
         $('#modal-rate-' + answer_id).modal('hide');
-        exit();
+
     }
 
     else if (user_id === '' || answer_id === '') {
@@ -35,17 +35,15 @@
                         rating: rating
                     }
                 })
+                .done(function (data) {
+                    $('#modal-rate-' + answer_id).modal('hide');
 
-                    .done(function (result) {
-                        $('#modal-rate-' + answer_id).modal('hide');
+                    alert.html(JSON.stringify(data));
+                })
 
-                        jQuery('.alert').show();
-                        jQuery('.alert').html(result.success);
-                    })
-
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        alert("C'è stato un problema con la chiamata ajax");
-                    })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    alert("C'è stato un problema con la chiamata ajax");
+                })
             }
         });
     }
