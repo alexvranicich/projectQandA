@@ -44,9 +44,9 @@
 
     </section>
 
-    <section class="list-table mx-5">
+    <section class="container-md">
 
-        @include('components.tables.question-table', ['questions' => $questions])
+        @include('components.tables.question-table-2', ['questions' => $questions])
 
     </section>
 
