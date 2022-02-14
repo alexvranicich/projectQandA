@@ -58,4 +58,13 @@ class Answer extends Model
                 ->update(['content' => $request->content]);
     }
 
+    public function countAnswer()
+    {
+        return DB::table('answers')
+                    ->join('questions', 'questions.id', '=', 'answers.question_id')
+                    ->where('question_id', '=', $question_id)
+                    ->get();
+
+    }
+
 }

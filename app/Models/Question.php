@@ -28,11 +28,11 @@ class Question extends Model
 
     ///  Tramite join listo le risposte e i loro rispettivi autori  ///
 
-    public static function list_questions()
+    public static function listQuestions()
     {
         return DB::table('questions')
                 ->join('users', 'users.id', '=', 'questions.user_id')
-                ->select('questions.id','questions.title', 'questions.user_id','questions.content','users.name')
+                ->select('questions.id','questions.title', 'questions.user_id','questions.content','users.name',)
                 ->get();
     }
 

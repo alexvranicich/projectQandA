@@ -38,12 +38,6 @@
         object-fit: fill;
     }
 
-    table td {
-        height: 8rem;
-        min-width: 20rem;
-        text-align: center;
-    }
-
     .rating {
         display: flex;
         flex-direction: row-reverse;
@@ -87,11 +81,11 @@
 
     <x-header.show-header />
 
-    <div class="main container-fluid pt-5 text-center">
+    <div class="main container-fluid pt-5">
 
             <!--    Domanda    -->
 
-            <div class="question-content m-4 p-4">
+            <div class="question-content text-center m-4 p-4">
                 <h5>Risposte a</h5>
                 <h1> {{  $question->content  }} </h1>
             </div>
@@ -109,11 +103,11 @@
 
             @else
 
-            <section class="table-form mt-5 pt-5">
+            <section class="container mt-5 pt-5">
 
                 <!--  Tabella risposte  -->
 
-                @include('components.tables.answer-table', ['answers' => $answers])
+                @include('components.tables.answer-table-2', ['answers' => $answers])
 
             </section>
 
