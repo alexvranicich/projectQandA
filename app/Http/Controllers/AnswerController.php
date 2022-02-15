@@ -50,24 +50,24 @@ class AnswerController extends Controller
             return redirect('/home');
         }
 
-        $id_question = $request->get("question-id");
+        $id_question = $request->get("question_id");
 
         $this->validate($request, [
-                        'question_id' => 'required',
-                        'content' => 'required | max: 1000',
-                    ]);
+                'question_id' => 'required',
+                'content' => 'required | max: 1000',
+            ]);
 
-        if (!Answer::UserAlreadyAnswer(Auth::user()->id, $id_question))
+        if (Answer::UserAlreadyAnswer(Auth::user()->id, $id_question))
         {
-            Answer::storeAnswer($request);
-            return redirect('/home')
-                ->with('success', 'Risposta inserita correttamente');
+            Answer::updateAnswer($request);
+                return redirect('/home')
+                    ->with('success', 'Risposta aggiornata correttamente');
         }
         else
         {
-            Answer::updateAnswer($request);
-            return redirect('/home')
-                ->with('success', 'Risposta aggiornata correttamente');
+            Answer::storeAnswer($request);
+                return redirect('/home')
+                    ->with('success', 'Risposta inserita correttamente');
         }
 
     }

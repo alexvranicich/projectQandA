@@ -8,16 +8,14 @@
         var rating = 0;
 
     if (user_id === user_answer_id) {
-        alert("Non puoi valutare ad una tua domanda");
+        alert("Non puoi valutare una tua domanda");
         $('#modal-rate-' + answer_id).modal('hide');
-
     }
 
     else if (user_id === '' || answer_id === '') {
         alert("C'è un prolema con gli ID di questa risposta, riprova con un'altra domanda");
-        exit();
+        return false;
     }
-
     else {
         $('#star-submit-' + answer_id).click(function () {
             rating = $('input[name=voto-' + answer_id + ']:checked').val();

@@ -18,12 +18,12 @@ class Rating extends Model
         'rating',
     ];
 
-    public function oneAnswer(){
-        return $this->hasOne('answers');
+    public function answer(){
+        return $this->hasOne(Answer::class);
     }
 
-    public function oneUser(){
-        return $this->hasOne('users');
+    public function user(){
+        return $this->hasOne(User::class);
     }
 
 

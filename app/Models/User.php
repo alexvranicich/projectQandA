@@ -52,12 +52,14 @@ class User extends Authenticatable
     }
 
 
-    public function Questions(){
-        return $this->hasMany('questions');
+    public function questions(){
+        return $this->hasMany(Question::class);
     }
-
-    public function Answers(){
-        return $this->hasMany('answers');
+    public function answers(){
+        return $this->hasMany(Answer::class);
+    }
+    public function ratings(){
+        return $this->hasMany(Rating::class);
     }
 
 

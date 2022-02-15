@@ -1,33 +1,40 @@
+@foreach ($answers as $answer)
 
-    <table class="table table-default text-center align-middle">
 
-        <thead>
-            <tr>
-                <th scope="col">Risposta da</th>
-                <th>Contenuto risposta</th>
-                <th>Rating</th>
-                <th>Valuta</th>
-            </tr>
-        </thead>
+<div class="h-full rounded shadow-lg p-5 mt-5 bg-white">
+    <div class="d-flex flex-column">
+        <div>
+            <div class="d-flex flex-column justify-content-start">
+                <div class="flex">
+                    Risposta da: <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($answer->name)) }}</span>
+                </div>
+            </div>
+        </div>
 
-        <tbody>
+    </div>
 
-        @foreach($answers as $answer)
+    <div class="mt-3 justify-content-start">
+        <h3 class="text-xl text-gray-900 font-semibold">
+            {{ ucfirst(trans($answer->content)) }}
+        </h3>
+    </div>
 
-            <tr>
-                <td scope="row">{{ $answer->name }}</td>
-                <td class="fw-bold" fs-3>{{ $answer->content }}</td>
-                <td> 3.2 / 5</td>
-                <td>
-                    <button type="button" class="open-modal btn btn-dark" data-useranswerid="{{ $answer->user_id }}" data-logid="{{ Auth::user()->id }}"  data-answerid="{{ $answer->id }}" data-bs-toggle="modal"  data-bs-target="#modal-rate-{{ $answer->id }}">Valuta</button>
-                </td>
-            </tr>
+    <div class="row justify-content-start mt-4">
 
-        </tbody>
+            <span class="col-2">
+                Vota
+                <button type="button" class="open-modal btn btn-outline-dark border-light" data-useranswerid="{{ $answer->user_id }}"
+                    data-logid="{{ Auth::user()->id }}"  data-answerid="{{ $answer->id }}"
+                    data-bs-toggle="modal"  data-bs-target="#modal-rate-{{ $answer->id }}">
+                    <span class="material-icons">star_rate</span>
+                </button>
+                <span>0</span>
+            </span>
 
-    </table>
+    </div>
+</div>
 
-        <!--  Rating Modal  -->
+<!--  Rating Modal  -->
 
         <div class="modal modal-rate fade" aria-labelledby="rateModelLabel" id="modal-rate-{{ $answer->id }}" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -56,5 +63,3 @@
     </div>
 
     @endforeach
-
-

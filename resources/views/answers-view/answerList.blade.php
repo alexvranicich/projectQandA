@@ -107,7 +107,7 @@
 
                 <!--  Tabella risposte  -->
 
-                @include('components.tables.answer-table-2', ['answers' => $answers])
+                @include('components.tables.answer-table', ['answers' => $answers])
 
             </section>
 

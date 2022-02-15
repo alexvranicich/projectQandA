@@ -12,7 +12,7 @@
 
             <div class="col-md-3 offset-md-1">
                 <button name="answer_form" type="submit" class="btn btn-outline-success btn-block p-5 m-5">Rispondi</button>
-                <input type="hidden" name="question_id" value="{{ $questions->id }}" />
+                <input type="hidden" name="question_id" id="question_id" value="{{ $questions->id }}" />
             </div>
 
         </div>

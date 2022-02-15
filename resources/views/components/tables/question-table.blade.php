@@ -1,101 +1,66 @@
-<div>
+<style>
 
-    {{--  Tabella da autenticato  --}}
+    .text-underline-hover {
+        text-decoration: none;
+        color: black;
+    }
+    .text-underline-hover:hover {
+        text-decoration: underline;
+        color: black;
+    }
 
-    @auth
-    <table class="table table-hover text-center align-middle" style="margin-top: 5rem;">
+    svg{
+        width: 2rem;
+    }
 
-        <div id="error"></div>
+</style>
 
-        <thead>
-            <tr>
-                <th scope="col">Chiesta da</th>
-                <th scope="col">Argomento</th>
-                <th scope="col">Domanda</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
+@foreach ($questions as $question)
 
-        <tbody>
 
-            @if($questions->count() == 0)
-                <tr>
-                    <td colspan="5">Non ci sono ancora domande</td>
-                </tr>
-            @endif
+<div class="h-full rounded shadow-lg p-5 mt-5 bg-white" id="{{Auth::user()->id}}">
+    <div class="d-flex flex-column">
+        <div>
+            <div class="d-flex flex-column justify-content-start">
+                <div class="flex">
+                    <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($question->name)) }}</span>
+                </div>
+            </div>
+        </div>
 
-            @foreach($questions as $question)
+    </div>
 
-            <tr class="clickable-row" style="cursor:pointer;" data-href="/answerList?id={{ $question->id }}">
-                <td scope="row" id="user_id" value='{{ $question->user_id }}'>{{ ucfirst(trans($question->name)) }}</td>
-                <td>{{ ucfirst(trans($question->title)) }}</td>
-                <td>{{ ucfirst(trans($question->content)) }}</td>
-                <td>
-                    <form method="get" action="{{ route('answer.show') }}">
-                        <input type="submit" name="question-id" class="btn btn-outline-success p-4" value="Rispondi" />
-                        <input type="hidden" name="question-id" value="{{ $question->id }}" />
-                    </form>
-                </td>
-            </tr>
+    <div class="mt-3 break-words">
+        <h3 class="text-xl text-gray-900 font-semibold">
+            <a href="/answerList?id={{ $question->id }}" class="text-underline-hover">{{ ucfirst(trans($question->title)) }}</a>
+        </h3>
 
-            @endforeach
+        <p class="text-gray-800 leading-7 mt-1">
+            {{ ucfirst(trans($question->content)) }}
+        </p>
+    </div>
 
-        </tbody>
+    <div class="row justify-content-start pt-2 mt-4">
 
-    </table>
-    @endauth
+            <span class="col-2">
+                <button name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
+                    <span class="material-icons md-24">thumb_up</span>
+                </button>
+                <span>0</span>
+            </span>
 
-    {{--  Tabella da guest  --}}
+            <span class="col-2">
+                <form method="get" action="{{ route('answer.show') }}">
+                    <button type="submit" name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
+                        <span class="material-icons md-24">comment</span>
+                    </button>
+                    <span>
+                        {{ $answers->where('question_id', $question->id)->count() }}
+                    </span>
+                </form>
+            </span>
 
-    @guest
-    <table class="table table-hover align-middle mt-5">
-
-        <thead>
-            <tr>
-                <th scope="col">Argomento</th>
-                <th scope="col">Domanda</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            @if($questions->count() == 0)
-                <tr>
-                    <td colspan="5">Non ci sono ancora domande</td>
-                </tr>
-            @endif
-
-            @foreach ($questions as $question)
-
-                <tr>
-                    <td scope="row"> {{ ucfirst(trans($question->title)) }} </td>
-                    <td> {{ ucfirst(trans($question->content)) }} </td>
-                </tr>
-
-            @endforeach
-
-        </tbody>
-
-    </table>
-    @endguest
-
+    </div>
 </div>
 
-@auth
-<script>
-
-    ////    Rende l'intera riga cliccabile  /////
-
-    var log_id = {{ Auth::user()->id }};
-
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            if ($(".clickable-row #user_id").val() == log_id) {
-                $('#error').empty().text('Non puoi rispondere ad una tua domanda');
-            } else
-            window.location = $(this).data("href");
-        });
-    });
-
-</script>
-@endauth
+@endforeach

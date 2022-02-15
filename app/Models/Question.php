@@ -18,12 +18,12 @@ class Question extends Model
         'content',
     ];
 
-    public function OneUser(){
-        return $this -> hasOne('users');
+    public function user(){
+        return $this -> hasOne(User::class);
     }
 
-    public function ManyAnswers(){
-        return $this -> hasMany('answers');
+    public function answers(){
+        return $this -> hasMany(Answer::class);
     }
 
     ///  Tramite join listo le risposte e i loro rispettivi autori  ///

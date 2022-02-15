@@ -18,12 +18,12 @@ class Answer extends Model
         'content',
     ];
 
-    public function oneUser(){
-        return $this->hasOne('users');
+    public function user(){
+        return $this->hasOne(User::class);
     }
 
-    public function oneQuestion(){
-        return $this->hasOne('questions');
+    public function question(){
+        return $this->hasOne(Question::class);
     }
 
     public function manyRatings(){
@@ -58,13 +58,12 @@ class Answer extends Model
                 ->update(['content' => $request->content]);
     }
 
-    public function countAnswer()
+    public static function countAnswers()
     {
-        return DB::table('answers')
-                    ->join('questions', 'questions.id', '=', 'answers.question_id')
-                    ->where('question_id', '=', $question_id)
-                    ->get();
-
+        return DB::table('questions')
+                    ->join('answers', 'answers.question_id', '=' , 'questions.id')
+                    ->select('answers.question_id')
+                    ->groupBy('answers.question_id');
     }
 
 }

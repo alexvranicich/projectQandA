@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Answer;
 
 class HomeController extends Controller
 {
@@ -16,14 +16,15 @@ class HomeController extends Controller
 
         $questions = Question::listQuestions();
 
-        $countAnswer = Answer::countAnswer($questions->id);
+        $answers = Answer::all();
+
+
 
         ///  La gestione della home avviene direttamente nelle view ///
 
         return view('home-view.home')
                 ->with('questions', $questions)
-                ->with('countAnswer', $countAnswer);
-
+                ->with('answers', $answers);
     }
 
 
