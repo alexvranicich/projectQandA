@@ -55,6 +55,7 @@ class Answer extends Model
     {
         return DB::table('answers')
                 ->where('user_id', Auth::user()->id)
+                ->where('question_id', $request->question_id)
                 ->update(['content' => $request->content]);
     }
 

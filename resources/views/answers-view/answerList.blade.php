@@ -81,51 +81,77 @@
 
     <x-header.show-header />
 
-    <div class="main container-fluid pt-5">
+    <div class="main container-fluid pt-2">
 
             <!--    Domanda    -->
+            <div class="row m-5 p-4 gx-2">
 
-            <div class="question-content text-center m-4 p-4">
-                <h5>Risposte a</h5>
-                <h1> {{  $question->content  }} </h1>
+                <div class="col-2">
+                    <h5>Domanda</h5>
+                </div>
+
+                <div class="col border-start border-danger p-">
+                    <h2> {{ $question->content }} </h2>
+                </div>
+
             </div>
 
-            <div class="container-md">
-                <hr>
+
+            <div class="container-fluid d-flex justify-content-center">
+                <hr style="width:85%; opacity:1;">
             </div>
 
+            <span class="success " style="color:green; margin-top:10px; margin-bottom: 10px;"></span>
 
-            @if($answers->count() == 0)
-
-                <tr>
-                    <td colspan="5">Non ci sono risposte a questa domanda</td>
-                </tr>
-
-            @else
-
-            <section class="container mt-5 pt-5">
-
-                <!--  Tabella risposte  -->
-
-                @include('components.tables.answer-table', ['answers' => $answers])
-
-            </section>
-
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible d-flex align-items-center fade show" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                        <span class="success"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
+
+            <div class="row m-5 p-4 gx-1">
+
+                <div class="col-2">
+                    <h5>Risposte</h5>
+                </div>
+
+                <div class="col">
+
+                    @if($answers->count() == 0)
+
+                        <div>
+                            <h5>Non ci sono ancora risposte a questa domanda</h5>
+                        </div>
+
+                    @else
+
+                    <section>
+
+                        @include('components.tables.answer-table', ['answers' => $answers])
+
+                    </section>
+
+                    @endif
+
+                </div>
+
+            </div>
 
                 <!--  Button per rispondere  -->
 
-            <div class="text-center p-4 m-5">
-                <h3 class="pb-4">@if($answers->count()!=0) Non sei soddisfatto delle risposte? @else Vuoi essere il primo a rispondere? @endif</h3>
-                <form method="get" action=" {{ route('answer.show') }}">
-                    <input type="submit" name="question-id" class="btn btn-outline-dark p-4" value="Prova te a dare una risposta" />
-                    <input type="hidden" name="question-id" value="{{ $question->id }}" />
+                <div class="text-center p-4 m-5">
+                    <h4 class="pb-4">@if($answers->count()!=0) Non sei soddisfatto delle risposte? @else Vuoi essere il primo a rispondere? @endif</h4>
+                    <form method="get" action=" {{ route('answer.show') }}">
+                        <input type="submit" name="question-id" class="btn btn-outline-dark p-4" value="Prova te a dare una risposta" />
+                        <input type="hidden" name="question-id" value="{{ $question->id }}" />
                 </form>
             </div>
 
     </div>
 
-    <script src="{{url('js/rating.js')}}"></script>
+    <script src="{{ url('js/rating.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 

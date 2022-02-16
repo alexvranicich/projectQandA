@@ -1,11 +1,11 @@
     ///// Chiamata ajax per gestire il rating  /////
 
 
-    $(document).on("click", ".open-modal", function () {
-        var user_id = $(this).data('logid');
-        var answer_id = $(this).data('answerid');
-        var user_answer_id = $(this).data('useranswerid');
-        var rating = 0;
+$(document).on("click", ".open-modal", function () {
+    var user_id = $(this).data('logid');
+    var answer_id = $(this).data('answerid');
+    var user_answer_id = $(this).data('useranswerid');
+    var rating = 0;
 
     if (user_id === user_answer_id) {
         alert("Non puoi valutare una tua domanda");
@@ -31,20 +31,19 @@
                         user_id: user_id,
                         answer_id: answer_id,
                         rating: rating
+                    },
+
+                success: function(response) {
+                    console.log(response);
+                    if (response) {
+                        $('.success').text(response.success);
                     }
-                })
-                .done(function (data) {
-                    $('#modal-rate-' + answer_id).modal('hide');
-
-                    alert.html(JSON.stringify(data));
-                })
-
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    alert("C'è stato un problema con la chiamata ajax");
-                })
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                        alert("C'è stato un problema con la chiamata ajax");
+                    }
+                });
             }
         });
     }
 });
-
-

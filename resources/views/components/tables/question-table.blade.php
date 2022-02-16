@@ -18,8 +18,8 @@
 @foreach ($questions as $question)
 
 
-<div class="h-full rounded shadow-lg p-5 mt-5 bg-white" id="{{Auth::user()->id}}">
-    <div class="d-flex flex-column">
+<div class="h-full shadow p-3 mb-5 bg-body rounded">
+    <div class="d-flex flex-column p-2">
         <div>
             <div class="d-flex flex-column justify-content-start">
                 <div class="flex">
@@ -30,12 +30,12 @@
 
     </div>
 
-    <div class="mt-3 break-words">
-        <h3 class="text-xl text-gray-900 font-semibold">
+    <div class="mt-2 break-words p-2">
+        <h4 class="text-xl text-gray-900 font-semibold">
             <a href="/answerList?id={{ $question->id }}" class="text-underline-hover">{{ ucfirst(trans($question->title)) }}</a>
-        </h3>
+        </h4>
 
-        <p class="text-gray-800 leading-7 mt-1">
+        <p class="text-gray-800 leading-7 mt-3">
             {{ ucfirst(trans($question->content)) }}
         </p>
     </div>

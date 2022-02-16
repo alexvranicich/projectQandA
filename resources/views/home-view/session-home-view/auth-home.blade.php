@@ -52,17 +52,3 @@
 
 </div>
 
-<script>
-
-var $log_id = {{ Auth::user()->id }};
-
-        jQuery(document).ready(function($) {
-            $(".clickable-row").click(function() {
-                if ($(".clickable-row #id").val() == log_id) {
-                    $('#error').empty().text('Non puoi rispondere ad una tua domanda');
-                } else
-                    window.location = $(this).data("href");
-            });
-        });
-
-</script>
