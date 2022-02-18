@@ -9,10 +9,6 @@
         color: black;
     }
 
-    svg{
-        width: 2rem;
-    }
-
 </style>
 
 @foreach ($questions as $question)
@@ -41,25 +37,19 @@
     </div>
 
     <div class="row justify-content-start pt-2 mt-4">
-
-            <span class="col-2">
-                <button name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
-                    <span class="material-icons md-24">thumb_up</span>
+        <span class="col-1">
+            <form method="get" action="{{ route('answer.show') }}">
+                <button type="submit" name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
+                    Rispondi
                 </button>
-                <span>0</span>
-            </span>
+            </form>
+        </span>
 
-            <span class="col-2">
-                <form method="get" action="{{ route('answer.show') }}">
-                    <button type="submit" name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
-                        <span class="material-icons md-24">comment</span>
-                    </button>
-                    <span>
-                        {{ $answers->where('question_id', $question->id)->count() }}
-                    </span>
-                </form>
-            </span>
-
+        <span class="col-2">
+            <a class="btn btn-outline-dark border-light" href="/answerList?id={{ $question->id }}">
+                <span class="material-icons md-24">comment</span><span class="badge bg-dark">{{ $answers->where('question_id', $question->id)->count() }}</span>
+            </a>
+        </span>
     </div>
 </div>
 

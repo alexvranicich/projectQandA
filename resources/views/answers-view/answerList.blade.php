@@ -90,8 +90,8 @@
                     <h5>Domanda</h5>
                 </div>
 
-                <div class="col border-start border-danger p-">
-                    <h2> {{ $question->content }} </h2>
+                <div class="col border-start border-danger p-3">
+                    <h3> {{ $question->content }} </h3>
                 </div>
 
             </div>
@@ -101,15 +101,13 @@
                 <hr style="width:85%; opacity:1;">
             </div>
 
-            <span class="success " style="color:green; margin-top:10px; margin-bottom: 10px;"></span>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissible d-flex align-items-center fade show" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                        <span class="success"></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+            <div class="alert alert-success alert-dismissible collapse w-25" id="alert-success" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <span class="success"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
 
             <div class="row m-5 p-4 gx-1">
 

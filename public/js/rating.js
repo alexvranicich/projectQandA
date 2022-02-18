@@ -9,41 +9,49 @@ $(document).on("click", ".open-modal", function () {
 
     if (user_id === user_answer_id) {
         alert("Non puoi valutare una tua domanda");
-        $('#modal-rate-' + answer_id).modal('hide');
+        return;
     }
 
     else if (user_id === '' || answer_id === '') {
         alert("C'è un prolema con gli ID di questa risposta, riprova con un'altra domanda");
-        return false;
+        return;
     }
-    else {
-        $('#star-submit-' + answer_id).click(function () {
-            rating = $('input[name=voto-' + answer_id + ']:checked').val();
 
-            if (rating === 0 || typeof rating === "undefined")
-                alert("Selezionare un voto");
-            else
-            {
-                $.ajax({
-                    url: "/rating",
-                    type: 'POST',
-                    data: {
-                        user_id: user_id,
-                        answer_id: answer_id,
-                        rating: rating
-                    },
+    else{
+        $('#modal-rate-' + answer_id).modal('show');
+    }
 
-                success: function(response) {
-                    console.log(response);
-                    if (response) {
-                        $('.success').text(response.success);
-                    }
+
+    $('#star-submit-' + answer_id).click(function () {
+        rating = $('input[name=voto-' + answer_id + ']:checked').val();
+
+        if (rating === 0 || typeof rating === "undefined")
+            alert("Selezionare un voto");
+        else
+        {
+            $.ajax({
+                url: "/rating",
+                type: 'POST',
+                data: {
+                    user_id: user_id,
+                    answer_id: answer_id,
+                    rating: rating
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
-                        alert("C'è stato un problema con la chiamata ajax");
-                    }
-                });
-            }
-        });
-    }
+
+            success: function(response) {
+                console.log(response);
+                if (response) {
+                    $('#alert-success').show();
+                    $('.success').text(response.success);
+                    $('#modal-rate-' + answer_id).modal('hide');
+                    setTimeout(function () { location.reload() }, 1500);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                    alert("C'è stato un problema con la chiamata ajax");
+                }
+            });
+        }
+    });
+
 });
