@@ -8,8 +8,8 @@
 
             <div class="collapse navbar-collapse container-md" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link " href="/home">Home</a>
-                    @auth<a class="nav-link " href="/question">Fammi una domanda</a>@endauth
+                    @if(!Route::is('home.show'))<a class="nav-link " href="/home">Home</a>@endif
+                    @auth @if(!Route::is('question.show'))<a class="nav-link " href="/question">Fammi una domanda</a> @endif @endauth
                 </div>
             </div>
             <div class="navbar-nav ml-5">
@@ -17,8 +17,8 @@
                     <a class="nav-link" href="/login">Accedi</a>
                 @endguest
                 @auth
-                <a class="nav-link disabled ml-5">{{ Auth::user()->name ?? '' }}</a>
-                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
+                    <a class="nav-link disabled ml-5">{{ Auth::user()->name ?? '' }}</a>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 @endauth
             </div>
         </div>

@@ -51,15 +51,17 @@
     </section>
 
 
-    <section class="table-form mt-5 pt-5">
-        <div class="container-fluid text-center mt-5 pt-5">
+    <section class="container mt-5 pt-5">
+        <div class="text-center mt-5 pt-5 mb-5">
 
             <h3>Intanto ecco alcune domande interessanti</h3>
-            <h5>Cliccaci per vedere le risposte</h5>
-
-            @include('components.tables.question-table',['questions' => $questions])
+            <h5>Accedi per poter rispondere</h5>
 
         </div>
+        <div class="mt-5 mp-5">
+            @include('components.tables.question-table', ['questions' => $questions])
+        </div>
+
     </section>
 
 </body>

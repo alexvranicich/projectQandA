@@ -16,25 +16,19 @@ class RatingController extends Controller
             return redirect('/home');
         }
 
-        $user_id = $request->user_id;
-        $answer_id = $request->answer_id;
-        $rating = $request->rating;
-
-        if (Rating::UserAlreadyRate($user_id, $answer_id))
+        if (Rating::UserAlreadyRate($request))
         {
-            return response()->json(['success' => 'Hai già valutato a questa domanda']);
+            Rating::updateRate($request);
+            return response()->json(['success' => 'Valutazione aggiornata']);
         }
-        else if (!Rating::ValidRatingInput($user_id, $answer_id, $rating))
+
+        else if (!Rating::ValidRatingInput($request))
         {
             return response()->json(['success' => "Problema coi dati, riprova con un'altra domanda"]);
         }
         else
         {
-            Rating::create([
-                'user_id' => $user_id,
-                'answer_id' => $answer_id,
-                'rating' => $rating
-            ]);
+            Rating::storeRate($request);
             return response()->json(['success' => 'Valutazione registrata con successo']);
         }
     }

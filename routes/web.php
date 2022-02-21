@@ -20,7 +20,7 @@ use App\Models\Rating;
 |
 */
 Route::redirect('/', '/home');
-Route::get('/home', [HomeController::class, 'home']);
+Route::get('/home', [HomeController::class, 'home'])->name('home.show');
 Route::get('/logout',[HomeController::class, 'logout']);
 
 Route::get('/register' , [RegisterController::class, 'register_show'])->name('register.show');

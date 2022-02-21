@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -27,44 +26,50 @@ class Rating extends Model
     }
 
 
-    public static function ValidRatingInput($user_id, $answer_id, $rating)
+    public static function ValidRatingInput(Request $request)
     {
-        if ($user_id !== '' || $answer_id !== '' || $rating !== '' || $rating > 5  || $rating < 1)
+        if ($request -> user_id !== '' || $request -> answer_id !== '' || $request-> rating !== '' || $request -> rating > 5.0  || $request->rating < 1.0)
             return true;
     }
 
 
-    public static function UserAlreadyRate($user_id, $answer_id)
+    public static function UserAlreadyRate(Request $request)
     {
         $check = DB::table('ratings')
-                ->where('user_id', '=', $user_id)
-                ->where('answer_id', '=', $answer_id)
+                ->where('user_id', '=',$request -> user_id)
+                ->where('answer_id', '=', $request -> answer_id)
                 ->get();
 
         return count($check) > 0;
     }
 
+    public static function storeRate(Request $request)
+    {
+        return Rating::create([
+                    'user_id' => $request -> user_id,
+                    'answer_id' => $request -> answer_id,
+                    'rating' => $request -> rating
+                ]);
+    }
+
+    public static function updateRate(Request $request)
+    {
+        return DB::table('ratings')
+                ->where('user_id', $request -> user_id)
+                ->where('answer_id', $request -> answer_id)
+                ->update(['rating' => $request-> rating]);
+    }
+
 
     ////    Calcolo del Rating Medio   ////
 
-    public function AvgRating($answer_id)
+    public static function AvgRating($answer_id)
     {
         $answers = DB::table('ratings')
                     ->where('answer_id', '=', $answer_id)
                     ->get();
 
-        if (is_array($answers)) {
-            $count = count($answers);
-            $sum = array_sum(array_column($answers, 'rating'));
-        }
-
-        //   Se non ci sono rating salvati ritorna 0  //
-
-        if ($count === 0) {
-            return 0;
-        } else {
-            return $sum / $count;
-        }
+        return $answers->avg('rating');
     }
 
 }

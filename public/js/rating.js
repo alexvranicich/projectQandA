@@ -8,7 +8,7 @@ $(document).on("click", ".open-modal", function () {
     var rating = 0;
 
     if (user_id === user_answer_id) {
-        alert("Non puoi valutare una tua domanda");
+        alert("Non puoi valutare una tua risposta");
         return;
     }
 

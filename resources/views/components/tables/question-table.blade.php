@@ -36,6 +36,7 @@
         </p>
     </div>
 
+    @auth
     <div class="row justify-content-start pt-2 mt-4">
         <span class="col-1">
             <form method="get" action="{{ route('answer.show') }}">
@@ -51,6 +52,8 @@
             </a>
         </span>
     </div>
+    @endauth
+
 </div>
 
 @endforeach
