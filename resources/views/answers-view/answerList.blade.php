@@ -125,11 +125,11 @@
 
                     @else
 
-                    <section>
+                    <div id="fetchData">
 
                         @include('components.tables.answer-table', ['answers' => $answers])
 
-                    </section>
+                    </div>
 
                     @endif
 
@@ -147,9 +147,16 @@
                 </form>
             </div>
 
+            <div class="d-flex justify-content-center ">
+                {{ $answers->links('vendor.pagination.bootstrap-4', ['elements' => $answers]) }}
+            </div>
+
+
     </div>
 
     <script src="{{ url('js/rating.js') }}"></script>
+
+    <script src=" {{ url('js/pagination.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 

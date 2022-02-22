@@ -32,8 +32,9 @@ class Question extends Model
     {
         return DB::table('questions')
                 ->join('users', 'users.id', '=', 'questions.user_id')
-                ->select('questions.id','questions.title', 'questions.user_id','questions.content','users.name',)
-                ->get();
+                ->select('questions.id','questions.title', 'questions.user_id','questions.content','users.name')
+                ->orderBy('questions.id')
+                ->paginate(3);
     }
 
     ///  Salva i dati della domanda nel database  ///

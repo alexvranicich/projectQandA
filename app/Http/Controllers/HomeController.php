@@ -12,13 +12,11 @@ class HomeController extends Controller
 
     public function home(){
 
-         /// Lista tutte le domande presenti  ///
+        /// Lista tutte le domande presenti  ///
 
         $questions = Question::listQuestions();
 
         $answers = Answer::all();
-
-
 
         ///  La gestione della home avviene direttamente nelle view ///
 
@@ -46,6 +44,21 @@ class HomeController extends Controller
         }
 
         return $search->orderBy('id', 'DESC')->paginate(10);
+    }
+
+
+    public function fetch_data(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $questions = Question::listQuestions();
+            $answers = Answer::all();
+
+            return view('components.tables.question-table')
+                    ->with('questions', $questions)
+                    ->with('answers', $answers)
+                    ->render();
+        }
     }
 
 }

@@ -96,11 +96,13 @@ class AnswerController extends Controller
                     ->where('question_id', '=', $question_id)
                     ->join('users', 'users.id', '=', 'answers.user_id')
                     ->select('answers.id','answers.content','answers.user_id','users.name')
-                    ->get();
+                    ->orderBy('answers.id')
+                    ->paginate(5);
 
 
         return view('answers-view.answerList')
                 ->with('question', $question)
                 ->with('answers', $answers);
     }
+
 }

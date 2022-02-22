@@ -4,7 +4,7 @@
         <div class="d-flex flex-column">
             <div class="row justify-content-between">
                 <div class="col">
-                    Risposta da: <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($answer->name)) }}</span>
+                    Risposta di <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($answer->name)) }}</span>
                 </div>
                 <div class="col-1">
                     <div class="badge bg-light text-warning">
@@ -61,4 +61,3 @@
     </div>
 
 @endforeach
-

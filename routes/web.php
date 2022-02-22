@@ -37,3 +37,6 @@ Route::post('/answer', [AnswerController::class, 'answer_store'])->name('answer.
 Route::get('/answerList', [AnswerController::class, 'answer_list'])->name('answer.list');
 
 Route::post('/rating', [RatingController::class, 'rating_js'])->name('rating.validate');
+
+
+Route::get('/home/pagination', 'HomeController@fetch_data');
