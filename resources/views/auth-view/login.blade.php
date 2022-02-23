@@ -21,34 +21,27 @@
     body {
         font-family: 'Montserrat', sans-serif;
     }
-
-    .log {
-        color: white;
-        padding-top: 22rem;
-    }
-
-    .log-form {
-        padding-top: 10rem;
-        padding-left: 3rem;
-        width: 45rem;
-    }
 </style>
 
 <body>
 
     <x-header.show-header />
 
-    <section class="main">
-        <div class="container-fluid pt-5 mt-4" style="height: 58rem;">
-            <div class="row h-100">
-                <div class="col-md-5 bg-dark">
-                    <div class="log container-md">
+    <section class="vh-100 main">
+
+        <div class="container-fluid h-100">
+            <div class="row vh-100">
+
+                <div class="col-lg-5 bg-dark text-white d-flex align-items-center p-4">
+                    <div>
                         <h2><i>Bentornato!</i></h2>
                         <h3><i>Inserisci i tuoi dati per loggarti</i></h3>
                     </div>
+
                 </div>
-                <div class="log-form col-md-7 bg-white">
-                    <div class="card-body">
+
+                <div class="col-lg-7 bg-white text-dark d-flex align-items-center">
+                    <div class="card-body p-5 mt-5">
 
                         @include('components.forms.login-form')
 

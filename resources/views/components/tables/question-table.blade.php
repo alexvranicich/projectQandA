@@ -8,7 +8,6 @@
         text-decoration: underline;
         color: black;
     }
-
 </style>
 
 @foreach ($questions as $question)

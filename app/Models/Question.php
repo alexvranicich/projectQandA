@@ -47,4 +47,15 @@ class Question extends Model
             'content' => $request -> content,
         ]);
     }
+
+
+    public static function searchQuestion(Request $request)
+    {
+        return DB::table('questions')
+                ->where('title', 'LIKE', "%{$request -> search}%")
+                ->orWhere('content', 'LIKE', "%{$request -> search}%")
+                ->select('questions.id', 'questions.title', 'questions.user_id', 'questions.content', 'users.name')
+                ->orderBy('questions.id')
+                ->paginate(3);
+    }
 }

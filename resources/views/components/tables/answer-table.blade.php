@@ -1,6 +1,6 @@
 @foreach ($answers as $answer)
 
-    <div class="h-full w-75 border-bottom border-primary p-4 bg-white">
+    <div class="w-75 border-bottom border-primary p-4 pt-0 bg-white">
         <div class="d-flex flex-column">
             <div class="row justify-content-between">
                 <div class="col">
@@ -23,8 +23,7 @@
             </div>
             <div class="col-1">
                 <button type="button" class="open-modal btn btn-outline-dark border-secondary mt-4 popover-dismiss" data-useranswerid="{{ $answer->user_id }}"
-                    data-logid="{{ Auth::user()->id }}" data-answerid="{{ $answer->id }}" data-bs-target="#modal-rate-{{ $answer->id }}"
-                    data-toggle="popover" data-trigger="focus" data-placement="right" data-bs-content="Non puoi valutare una tua domanda" id="rate-popover">
+                    data-logid="{{ Auth::user()->id }}" data-answerid="{{ $answer->id }}" data-bs-target="#modal-rate-{{ $answer->id }}">
                     Valuta
                 </button>
             </div>

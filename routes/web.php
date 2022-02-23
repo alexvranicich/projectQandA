@@ -38,5 +38,8 @@ Route::get('/answerList', [AnswerController::class, 'answer_list'])->name('answe
 
 Route::post('/rating', [RatingController::class, 'rating_js'])->name('rating.validate');
 
+Route::get('/search', [HomeController::class, 'search'])->name('search.show');
 
-Route::get('/home/pagination', 'HomeController@fetch_data');
+
+
+

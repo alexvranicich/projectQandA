@@ -27,11 +27,13 @@
         </div>
     @endif
 
+    @if(Route::is('home.show'))
     <section class="search my-5 mx-2">
 
         <div class="container-fluid text-center" style="padding-top: 7rem;">
             <h2>Cerca le domande che preferisci</h2>
         </div>
+
 
         <div class="container-md">
             <div class="input-group" style="padding-top: 5rem; height:3rem;">
@@ -43,11 +45,10 @@
         </div>
 
     </section>
+    @endif
 
     <section class="container-md" id="fetchData">
-
         @include('components.tables.question-table', ['questions' => $questions] , ['answers' => $answers])
-
     </section>
 
 </div>

@@ -1,4 +1,4 @@
-<div>
+<div class="w-75">
     <form action="{{ route('register.store') }}" method="post">
         @csrf
 

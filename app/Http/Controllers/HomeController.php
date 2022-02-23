@@ -10,7 +10,7 @@ use App\Models\Answer;
 class HomeController extends Controller
 {
 
-    public function home(){
+    public function home(Request $request){
 
         /// Lista tutte le domande presenti  ///
 
@@ -18,6 +18,15 @@ class HomeController extends Controller
 
         $answers = Answer::all();
 
+        /// Pagination  ///
+
+        if ($request->ajax()) {
+
+            return view('components.tables.question-table')
+                ->with('questions', $questions)
+                ->with('answers', $answers)
+                ->render();
+        }
         ///  La gestione della home avviene direttamente nelle view ///
 
         return view('home-view.home')
@@ -37,16 +46,17 @@ class HomeController extends Controller
     }
 
 
-    public function search(Request $request){
-        $search = Question::query();
-        if (request('term')) {
-            $search->where('name', 'Like', '%' . request('term') . '%');
-        }
+    public function search(Request $request)
+    {
+        $questions = Question::searchQuestion($request);
+        $answers = Answer::all();
 
-        return $search->orderBy('id', 'DESC')->paginate(10);
+        return view('search')
+            ->with('answers', $answers)
+            ->with('questions', $questions);
     }
 
-
+/*
     public function fetch_data(Request $request)
     {
         if ($request->ajax()) {
@@ -60,5 +70,5 @@ class HomeController extends Controller
                     ->render();
         }
     }
-
+*/
 }

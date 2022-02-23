@@ -13,9 +13,11 @@
                 </div>
             </div>
             <div class="navbar-nav ml-5">
+                @if(!Route::is('login.show'))
                 @guest
                     <a class="nav-link" href="/login">Accedi</a>
                 @endguest
+                @endif
                 @auth
                     <a class="nav-link disabled ml-5">{{ Auth::user()->name ?? '' }}</a>
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>

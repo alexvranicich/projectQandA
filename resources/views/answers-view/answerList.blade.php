@@ -86,11 +86,11 @@
             <!--    Domanda    -->
             <div class="row m-5 p-4 gx-2">
 
-                <div class="col-2">
+                <div class="col-2 col-lg">
                     <h5>Domanda</h5>
                 </div>
 
-                <div class="col border-start border-danger p-3">
+                <div class="col-lg border-start border-danger p-3">
                     <h3> {{ $question->content }} </h3>
                 </div>
 
@@ -103,35 +103,28 @@
 
 
             <div class="alert alert-success alert-dismissible collapse w-25" id="alert-success" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
-                    <span class="success"></span>
+                <span class="success"></span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
 
             <div class="row m-5 p-4 gx-1">
 
-                <div class="col-2">
+                <div class="col-2 col-lg">
                     <h5>Risposte</h5>
                 </div>
 
-                <div class="col">
+                <div class="col-lg">
 
-                    @if($answers->count() == 0)
-
-                        <div>
-                            <h5>Non ci sono ancora risposte a questa domanda</h5>
-                        </div>
-
-                    @else
-
-                    <div id="fetchData">
-
-                        @include('components.tables.answer-table', ['answers' => $answers])
-
-                    </div>
-
-                    @endif
+                        @if($answers->count() == 0)
+                            <div>
+                                <h5>Non ci sono ancora risposte a questa domanda</h5>
+                            </div>
+                        @else
+                            <div id="fetchData">
+                                @include('components.tables.answer-table', ['answers' => $answers])
+                            </div>
+                        @endif
 
                 </div>
 
@@ -154,11 +147,11 @@
 
     </div>
 
-    <script src="{{ url('js/rating.js') }}"></script>
 
-    <script src=" {{ url('js/pagination.js') }}"></script>
+<script src="{{ url('js/rating.js') }}"></script>
+<script src="{{ url('js/pagination.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
 
 </body>
 

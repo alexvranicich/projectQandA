@@ -1,4 +1,4 @@
-<div>
+<div class="w-75">
 
     @error('error')
         <div class="text-danger">{{ $message }}</div>
@@ -30,5 +30,6 @@
         </div>
 
     </form>
+
 </div>
 
