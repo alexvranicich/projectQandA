@@ -14,24 +14,30 @@ class HomeController extends Controller
 
         /// Lista tutte le domande presenti  ///
 
-        $questions = Question::listQuestions();
-
         $answers = Answer::all();
 
         /// Pagination  ///
 
+        if($request->input('search')){
+            $questions = Question::searchQuestion($request);
+        }
+        else{
+            $questions = Question::listQuestions();
+        }
+
         if ($request->ajax()) {
 
             return view('components.tables.question-table')
-                ->with('questions', $questions)
-                ->with('answers', $answers)
-                ->render();
+            ->with('questions', $questions)
+            ->with('answers', $answers)
+            ->render();
         }
+
         ///  La gestione della home avviene direttamente nelle view ///
 
         return view('home-view.home')
-                ->with('questions', $questions)
-                ->with('answers', $answers);
+            ->with('questions', $questions)
+            ->with('answers', $answers);
     }
 
 
@@ -51,24 +57,10 @@ class HomeController extends Controller
         $questions = Question::searchQuestion($request);
         $answers = Answer::all();
 
-        return view('search')
+        return view('home-view.home')
             ->with('answers', $answers)
             ->with('questions', $questions);
     }
 
-/*
-    public function fetch_data(Request $request)
-    {
-        if ($request->ajax()) {
 
-            $questions = Question::listQuestions();
-            $answers = Answer::all();
-
-            return view('components.tables.question-table')
-                    ->with('questions', $questions)
-                    ->with('answers', $answers)
-                    ->render();
-        }
-    }
-*/
 }

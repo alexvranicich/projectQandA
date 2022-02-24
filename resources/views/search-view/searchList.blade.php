@@ -36,18 +36,15 @@
 
     <x-header.show-header />
 
-        <!-- Guest HomePage  -->
+    <div class="container-lg mt-3">
+        <div class="d-flex justify-content-start p-5">
+            <h3>Risultati trovati per: <i>{{ app('request')->input('search') }} </i></h3>
+        </div>
 
-        @guest
-            @include('home-view.session-home-view.guest-home')
-        @endguest
-
-        <!-- Authtenticate HomePage  -->
-
-        @auth
-            @include('home-view.session-home-view.auth-home')
-        @endauth
-
+        <section class="container-md" id="fetchData">
+            @include('components.tables.question-table', ['questions' => $questions] , ['answers' => $answers])
+        </section>
+    </div>
 
     <script src="{{ url('js/pagination.js') }}"></script>
 

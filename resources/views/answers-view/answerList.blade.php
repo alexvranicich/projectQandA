@@ -83,66 +83,65 @@
 
     <div class="main container-fluid pt-2">
 
-            <!--    Domanda    -->
-            <div class="row m-5 p-4 gx-2">
+        <!--    Domanda    -->
+        <div class="row m-5 p-4 gx-2">
 
-                <div class="col-2 col-lg">
-                    <h5>Domanda</h5>
-                </div>
+            <div class="col-2 col-lg">
+                <h5>Domanda</h5>
+            </div>
 
-                <div class="col-lg border-start border-danger p-3">
-                    <h3> {{ $question->content }} </h3>
-                </div>
+            <div class="col-lg border-start border-danger p-3">
+                <h3> {{ $question->content }} </h3>
+            </div>
+
+        </div>
+
+        <div class="container-fluid d-flex justify-content-center">
+            <hr style="width:85%; opacity:1;">
+        </div>
+
+
+        <div class="alert alert-success alert-dismissible collapse w-25" id="alert-success" role="alert">
+            <span class="success"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
+        <div class="row m-5 p-4 gx-1">
+
+            <div class="col-2 col-lg">
+                <h5>Risposte</h5>
+            </div>
+
+            <div class="col-lg">
+
+                @if($answers->count() == 0)
+                    <div>
+                        <h5>Non ci sono ancora risposte a questa domanda</h5>
+                    </div>
+                @else
+                    <div id="fetchData">
+                        @include('components.tables.answer-table', ['answers' => $answers])
+                    </div>
+                @endif
 
             </div>
 
-
-            <div class="container-fluid d-flex justify-content-center">
-                <hr style="width:85%; opacity:1;">
-            </div>
-
-
-            <div class="alert alert-success alert-dismissible collapse w-25" id="alert-success" role="alert">
-                <span class="success"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-
-            <div class="row m-5 p-4 gx-1">
-
-                <div class="col-2 col-lg">
-                    <h5>Risposte</h5>
-                </div>
-
-                <div class="col-lg">
-
-                        @if($answers->count() == 0)
-                            <div>
-                                <h5>Non ci sono ancora risposte a questa domanda</h5>
-                            </div>
-                        @else
-                            <div id="fetchData">
-                                @include('components.tables.answer-table', ['answers' => $answers])
-                            </div>
-                        @endif
-
-                </div>
-
-            </div>
+        </div>
 
                 <!--  Button per rispondere  -->
 
-                <div class="text-center p-4 m-5">
-                    <h4 class="pb-4">@if($answers->count()!=0) Non sei soddisfatto delle risposte? @else Vuoi essere il primo a rispondere? @endif</h4>
-                    <form method="get" action=" {{ route('answer.show') }}">
-                        <input type="submit" name="question-id" class="btn btn-outline-dark p-4" value="Prova te a dare una risposta" />
-                        <input type="hidden" name="question-id" value="{{ $question->id }}" />
-                </form>
-            </div>
+        <div class="text-center p-4 m-5">
+                <h4 class="pb-4">@if($answers->count()!=0) Non sei soddisfatto delle risposte? @else Vuoi essere il primo a rispondere? @endif</h4>
+            <form method="get" action=" {{ route('answer.show') }}">
+                <input type="submit" name="question-id" class="btn btn-outline-dark p-4" value="Prova te a dare una risposta" />
+                <input type="hidden" name="question-id" value="{{ $question->id }}" />
+            </form>
+        </div>
 
-            <div class="d-flex justify-content-center ">
-                {{ $answers->links('vendor.pagination.bootstrap-4', ['elements' => $answers]) }}
-            </div>
+        <div class="d-flex justify-content-center ">
+            {{ $answers->links('vendor.pagination.bootstrap-4', ['elements' => $answers]) }}
+        </div>
 
 
     </div>

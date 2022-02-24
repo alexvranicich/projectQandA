@@ -5,10 +5,9 @@
     @enderror
 
     <form action="{{ route('login.validate') }}" method="post">
+        @csrf
 
-       @csrf
-
-        <h1 class="mb-5">Loggati</h1>
+        <h1 class="mb-5">Accedi</h1>
 
         <div class="form-outline mb-4">
             <label class="form-label" for="email">Email</label>

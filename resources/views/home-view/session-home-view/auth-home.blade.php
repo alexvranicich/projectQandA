@@ -5,13 +5,6 @@
         background-size: cover;
         color: white;
     }
-
-    table td {
-        height: 10rem;
-        min-width: 20rem;
-        text-align: center;
-    }
-
     .alert{
         width: 40%;
     }
@@ -36,20 +29,33 @@
 
 
         <div class="container-md">
-            <div class="input-group" style="padding-top: 5rem; height:3rem;">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary p-3" style="width: 5rem;" type="button"><span class="material-icons md-light">search</span></button>
+            <form action="{{ route('home.show') }}" method="GET" role="search">
+                <div class="input-group" style="padding-top: 5rem; height:3rem;">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary p-3" style="width: 5rem;" type="submit"><span class="material-icons md-light">search</span></button>
+                    </div>
+                    <input type="text" id="search" name="search" class="filter_search form-control p-3" placeholder="Cerca">
                 </div>
-                <input type="text" class="filter_search form-control p-3" placeholder="Cerca">
-            </div>
+            </form>
         </div>
 
     </section>
+
+    @elseif(app('request')->input('search'))
+
+        <div class="container-lg">
+            <div class="d-flex justify-content-start p-5">
+                <h3>Risultati trovati per: <i>{{ app('request')->input('search') }} </i></h3>
+            </div>
+        </div>
+
     @endif
 
-    <section class="container-md" id="fetchData">
-        @include('components.tables.question-table', ['questions' => $questions] , ['answers' => $answers])
-    </section>
+    <div class="pt-5">
+        <div class="container-md" id="fetchData">
+            @include('components.tables.question-table', ['questions' => $questions] , ['answers' => $answers])
+        </div>
+    </div>
 
 </div>
 

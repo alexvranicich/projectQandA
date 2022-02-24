@@ -52,9 +52,10 @@ class Question extends Model
     public static function searchQuestion(Request $request)
     {
         return DB::table('questions')
-                ->where('title', 'LIKE', "%{$request -> search}%")
-                ->orWhere('content', 'LIKE', "%{$request -> search}%")
+                ->join('users', 'users.id', '=', 'questions.user_id')
                 ->select('questions.id', 'questions.title', 'questions.user_id', 'questions.content', 'users.name')
+                ->where('title', 'Like', '%' . $request->search . '%')
+                ->orWhere('content', 'Like', '%' . $request->search . '%')
                 ->orderBy('questions.id')
                 ->paginate(3);
     }
