@@ -10,7 +10,7 @@
     }
 </style>
 
-<div>
+<section>
 
     @if (session('success'))
         <div class="alert alert-success alert-dismissible d-flex align-items-center fade show" role="alert">
@@ -20,28 +20,24 @@
         </div>
     @endif
 
-    @if(Route::is('home.show'))
-    <section class="search my-5 mx-2">
+    @if(!app('request')->input('search'))
 
-        <div class="container-fluid text-center" style="padding-top: 7rem;">
-            <h2>Cerca le domande che preferisci</h2>
-        </div>
+        <section class="search my-5 mx-2">
 
+            <div class="h-100 d-grid gap-3">
 
-        <div class="container-md">
-            <form action="{{ route('home.show') }}" method="GET" role="search">
-                <div class="input-group" style="padding-top: 5rem; height:3rem;">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary p-3" style="width: 5rem;" type="submit"><span class="material-icons md-light">search</span></button>
-                    </div>
-                    <input type="text" id="search" name="search" class="filter_search form-control p-3" placeholder="Cerca">
+                <div class="d-flex align-items-center justify-content-center">
+                    <h2>Cerca le domande che preferisci</h2>
                 </div>
-            </form>
-        </div>
 
-    </section>
+                <div class="container-md">
+                    @include('components.forms.search-form')
+                </div>
+            </div>
 
-    @elseif(app('request')->input('search'))
+        </section>
+
+    @else
 
         <div class="container-lg">
             <div class="d-flex justify-content-start p-5">
@@ -49,13 +45,26 @@
             </div>
         </div>
 
+        <div class="container-fluid d-flex justify-content-center">
+            <hr style="width:85%; opacity:1;">
+        </div>
+
     @endif
 
-    <div class="pt-5">
-        <div class="container-md" id="fetchData">
-            @include('components.tables.question-table', ['questions' => $questions] , ['answers' => $answers])
-        </div>
-    </div>
+        <div class="container-md mt-4" id="fetchData">
+            <div class="row">
+                <div class="col-md-8">
+                    @include('components.tables.question-table-2', ['questions' => $questions] , ['answers' => $answers])
+                </div>
+                <div class="col-md-3 offset-1">
+                    <div class="border-start border-danger" style="height: 30rem">
 
-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+
+
 

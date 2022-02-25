@@ -76,10 +76,6 @@ class AnswerController extends Controller
     public function answer_list(Request $request)
     {
 
-        if (Auth::guest()) {
-            return redirect('/home');
-        }
-
         if (!$request->has('id')){                                       //// segnalare che c'è stato un problema nel get id
             dd("Non sono riuscito a prendere l'id dalla domanda");
         }

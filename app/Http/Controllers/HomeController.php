@@ -51,16 +51,4 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
-
-    public function search(Request $request)
-    {
-        $questions = Question::searchQuestion($request);
-        $answers = Answer::all();
-
-        return view('home-view.home')
-            ->with('answers', $answers)
-            ->with('questions', $questions);
-    }
-
-
 }

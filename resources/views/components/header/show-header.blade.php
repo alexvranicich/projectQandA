@@ -8,10 +8,11 @@
 
             <div class="collapse navbar-collapse container-md" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    @if(!Route::is('home.show'))<a class="nav-link " href="/home">Home</a>@endif
+                    <a class="nav-link " href="/home">Home</a>
                     @auth @if(!Route::is('question.show'))<a class="nav-link " href="/question">Fammi una domanda</a> @endif @endauth
                 </div>
             </div>
+
             <div class="navbar-nav ml-5">
                 @if(!Route::is('login.show'))
                 @guest
@@ -23,8 +24,10 @@
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
                 @endauth
             </div>
+
         </div>
     </nav>
+
 
     <!--  Logout Modal  -->
 

@@ -41,43 +41,40 @@
 
         <x-header.show-header />
 
-        <!-- Main with form and image -->
-
         <section class="main container-fluid">
 
             <div class="row">
                 <div class="col-md-8">
                     <div class="container-md">
 
-                        @isset($errorMsg)
+                    @isset($errorMsg)
                         <div class="mail p-3 w-100 text-danger">
                             <h5>
                                {{ $errorMsg }}
                             </h5>
                         </div>
-                        @endisset
+                    @endisset
 
-                        @empty($errorMsg)
+                    @empty($errorMsg)
                         <div class="mail p-2 w-100">
                             <h5>
                                 @empty($errorMsg) Rispondi a <i>{{ $name }}</i> @endempty
                             </h5>
                         </div>
-                        @endempty
+                    @endempty
 
-                        <hr>
+                    <hr>
 
                         <div class="question p-5 w-100">
                             <h2> {{ $questions->content }}  </h2>
                         </div>
 
-                        <hr>
+                    <hr>
 
                         <div class="answer p-5">
-
                             @include('components.forms.answer-form', ['questions' => $questions])
-
                         </div>
+
                     </div>
                 </div>
 

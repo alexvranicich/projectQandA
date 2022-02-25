@@ -11,13 +11,11 @@
 
 @foreach ($questions as $question)
 
-    <div class="h-100 shadow p-3 mb-5 bg-body rounded">
+    <div class="w-100 border-bottom border-primary p-4 bg-white">
         <div class="d-flex flex-column p-2">
 
-            <div class="d-flex flex-column justify-content-start">
-                <div class="flex">
-                    <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($question->name)) }}</span>
-                </div>
+            <div class="justify-content-start">
+                 <span class="text-gray-900 mr-5 fst-italic">{{ ucfirst(trans($question->name)) }}</span>
             </div>
 
         </div>
@@ -34,7 +32,7 @@
 
         <div class="row justify-content-start pt-2">
             @auth
-            <span class="col-1">
+            <span class="col-2">
                 <form method="get" action="{{ route('answer.show') }}">
                     <button type="submit" name="question-id" class="btn btn-outline-dark border-light" value="{{ $question->id }}">
                         Rispondi
@@ -54,6 +52,6 @@
 
 @endforeach
 
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center pt-5 mt-5">
             {{ $questions->links('vendor.pagination.bootstrap-4', ['elements' => $questions]) }}
     </div>

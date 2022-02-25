@@ -23,10 +23,15 @@
             @error('password')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
 
-        <button class="btn btn-outline-light btn-lg btn-block mt-1 mb-5" id="create" type="submit">Registrati</button>
 
-        <div class="d-flex mt-4 pb-4">
-            <a href="/login" class="btn btn-outline-secondary" role="button" data-bs-toggle="button">Hai già un account?</a>
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-outline-light btn-lg btn-block mt-1 mb-5" id="create" type="submit">Registrati</button>
+            </div>
+            <div class="col-md-4 offset-md-1">
+                <a href="/login" class="btn btn-outline-secondary mt-2" role="button" data-bs-toggle="button">Hai già un account?</a>
+            </div>
         </div>
+
     </form>
 </div>

@@ -37,16 +37,14 @@
                         <h3><i>Inserisci i tuoi dati per registrarti</i></h3>
                     </div>
                 </div>
+
                 <div class="col-lg-7 bg-dark text-white d-flex align-items-center">
-
-                        <div class="card-body p-5 mt-5">
-
-                            @error('exists')<div class="text-danger">* Questa mail è già registrata, provane una nuova o effettua il login *</div>@enderror
-
-                            @include('components.forms.register-form')
-
-                        </div>
+                    <div class="card-body p-5 mt-5">
+                        @error('exists')<div class="text-danger">* Questa mail è già registrata, provane una nuova o effettua il login *</div>@enderror
+                        @include('components.forms.register-form')
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
