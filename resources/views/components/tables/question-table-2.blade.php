@@ -9,9 +9,15 @@
     }
 </style>
 
+@if(!app('request')->input('search'))
+    <div class="fs-3 w-100 border-bottom border-2 border-primary p-4 bg-white">
+        <span>Ti potrebbero piacere:</span>
+    </div>
+@endif
+
 @foreach ($questions as $question)
 
-    <div class="w-100 border-bottom border-primary p-4 bg-white">
+    <div class="w-100 border-bottom border-1 border-primary p-4 bg-white">
         <div class="d-flex flex-column p-2">
 
             <div class="justify-content-start">
@@ -51,6 +57,8 @@
     </div>
 
 @endforeach
+
+    <!--  Pagination  -->
 
     <div class="d-flex justify-content-center pt-5 mt-5">
             {{ $questions->links('vendor.pagination.bootstrap-4', ['elements' => $questions]) }}

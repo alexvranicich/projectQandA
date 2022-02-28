@@ -34,7 +34,7 @@ class Question extends Model
                 ->join('users', 'users.id', '=', 'questions.user_id')
                 ->select('questions.id','questions.title', 'questions.user_id','questions.content','users.name')
                 ->orderBy('questions.id')
-                ->paginate(3);
+                ->paginate(5);
     }
 
     ///  Salva i dati della domanda nel database  ///
@@ -57,6 +57,6 @@ class Question extends Model
                 ->where('title', 'Like', '%' . $request->search . '%')
                 ->orWhere('content', 'Like', '%' . $request->search . '%')
                 ->orderBy('questions.id')
-                ->paginate(3);
+                ->paginate(5);
     }
 }

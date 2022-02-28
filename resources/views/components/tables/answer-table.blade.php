@@ -2,7 +2,7 @@
 
     <!--    Parte superiore: nome utente che ha risposto e Avg Rating     -->
 
-    <div class="w-75 border-bottom border-primary p-4 pt-0 bg-white">
+    <div class="w-75 border-bottom border-primary p-4 bg-white">
         <div class="d-flex flex-column">
 
             <div class="row justify-content-between">

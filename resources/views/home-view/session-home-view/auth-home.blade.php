@@ -25,13 +25,12 @@
         <section class="search my-5 mx-2">
 
             <div class="h-100 d-grid gap-3">
-
                 <div class="d-flex align-items-center justify-content-center">
                     <h2>Cerca le domande che preferisci</h2>
                 </div>
 
                 <div class="container-md">
-                    @include('components.forms.search-form')
+                    @include('components.helpers.search')
                 </div>
             </div>
 
@@ -40,8 +39,9 @@
     @else
 
         <div class="container-lg">
-            <div class="d-flex justify-content-start p-5">
-                <h3>Risultati trovati per: <i>{{ app('request')->input('search') }} </i></h3>
+            <div class="p-4">
+                <h4>Risultati trovati per:</h4>
+                <h3><i>{{ app('request')->input('search') }} </i></h3>
             </div>
         </div>
 
@@ -56,11 +56,11 @@
                 <div class="col-md-8">
                     @include('components.tables.question-table-2', ['questions' => $questions] , ['answers' => $answers])
                 </div>
-                <div class="col-md-3 offset-1">
-                    <div class="border-start border-danger" style="height: 30rem">
-
+                @if(!app('request')->input('search'))
+                    <div class="col-md-3 offset-1">
+                        @include('components.helpers.filter')
                     </div>
-                </div>
+                @endif
             </div>
         </div>
 

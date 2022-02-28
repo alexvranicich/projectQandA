@@ -25,7 +25,7 @@
     html,
     body {
         font-family: 'Montserrat', sans-serif;
-        padding-top: 4rem;
+        padding-top: 3rem;
     }
 
 </style>
