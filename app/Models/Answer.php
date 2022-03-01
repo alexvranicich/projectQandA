@@ -30,6 +30,7 @@ class Answer extends Model
         return $this->hasMany('ratings');
     }
 
+    ////  Controlla che l'tente loggato non abbia già risposto  ////
 
     public static function userAlreadyAnswer($user_id, $question_id)
     {
@@ -41,6 +42,8 @@ class Answer extends Model
         return count($check)>0;
     }
 
+    ////  Salva i dati delle risposte nel database  ////
+
 
     public static function storeAnswer(Request $request)
     {
@@ -51,6 +54,8 @@ class Answer extends Model
         ]);
     }
 
+    ////  Aggiorna la risposta  ////
+
     public static function updateAnswer(Request $request)
     {
         return DB::table('answers')
@@ -58,6 +63,8 @@ class Answer extends Model
                 ->where('question_id', $request->question_id)
                 ->update(['content' => $request->content]);
     }
+
+    ////  Conta le risposte  ////
 
     public static function countAnswers()
     {

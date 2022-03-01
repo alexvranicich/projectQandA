@@ -26,7 +26,7 @@ class Question extends Model
         return $this -> hasMany(Answer::class);
     }
 
-    ///  Tramite join listo le risposte e i loro rispettivi autori  ///
+    ////  Tramite join listo le risposte e i loro rispettivi autori  ////
 
     public static function listQuestions()
     {
@@ -37,7 +37,7 @@ class Question extends Model
                 ->paginate(5);
     }
 
-    ///  Salva i dati della domanda nel database  ///
+    ////  Salva i dati della domanda nel database  ////
 
     public static function storeQuestion(Request $request)
     {
@@ -48,6 +48,7 @@ class Question extends Model
         ]);
     }
 
+    ////  Implementa la query per la search  ////
 
     public static function searchQuestion(Request $request)
     {

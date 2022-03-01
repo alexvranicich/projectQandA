@@ -39,7 +39,7 @@ $(document).on("click", ".open-modal", function () {
                 },
 
             success: function(response) {
-                response.preventDefault();
+
                 if (response) {
                     $('#alert-success').show();
                     $('.success').text(response.success);

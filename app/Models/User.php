@@ -62,6 +62,8 @@ class User extends Authenticatable
     }
 
 
+    ////  Salva i dati dell'utente nel database  ////
+
     protected static function storeUser(array $data)
     {
         return User::create([

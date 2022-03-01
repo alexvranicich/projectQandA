@@ -17,9 +17,9 @@ class RegisterController extends Controller
     public function register_validation(RegisterRequest $request)
     {
 
-        /// Se presente una sessione la interrompo per creare un nuova variabile di sessione ///
-        
-        if (Auth::check()) 
+        /// Se presente una sessione la interrompo per creare un nuova variabile di sessione e il rispettivo token ///
+
+        if (Auth::check())
         {
             Auth::logout();
             $request->session()->invalidate();
@@ -34,11 +34,11 @@ class RegisterController extends Controller
 
         $user = User::storeUser($validated);
 
-        //// Logga l'utente e salva variabile dell'utente //// 
+        //// Logga l'utente e salva variabile dell'utente ////
 
         Auth::login($user);
-       
-        //// Return home route, it choose view home //// 
+
+        //// Return home route, it choose view home ////
 
         return redirect('/home')
                 ->with('success', "Account registrato correttamente");

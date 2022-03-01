@@ -32,6 +32,7 @@ class Rating extends Model
             return true;
     }
 
+    ////  Controlla se l'utente loggato ha già valutato la domanda  ////
 
     public static function UserAlreadyRate(Request $request)
     {
@@ -43,6 +44,8 @@ class Rating extends Model
         return count($check) > 0;
     }
 
+    ////    Salva Rating inserito  ////
+
     public static function storeRate(Request $request)
     {
         return Rating::create([
@@ -51,6 +54,8 @@ class Rating extends Model
                     'rating' => $request -> rating
                 ]);
     }
+
+    ////   Aggiorna Rating   ////
 
     public static function updateRate(Request $request)
     {
@@ -69,7 +74,12 @@ class Rating extends Model
                     ->where('answer_id', '=', $answer_id)
                     ->get();
 
-        return $answers->avg('rating');
+        $avg = $answers->avg('rating');
+
+        // Ritorna un solo decimale dopo la virgola //
+
+        return number_format((float)$avg, 1, '.', '');
+
     }
 
 }

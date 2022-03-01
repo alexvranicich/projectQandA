@@ -20,7 +20,7 @@ class QuestionController extends Controller
     }
 
 
-    /////   Gestisce l'inserimento di nuove domande   /////
+    /***    Gestisce l'inserimento di nuove domande   ***/
 
 
     public function question_store(Request $request)
