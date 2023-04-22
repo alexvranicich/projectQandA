@@ -2,4 +2,4 @@
 
 ## Progetto per la tesi di laurea triennale di informatica
 
-Sviluppo di una applicazione social in Laravel: un Q&A con valutazionde delle risposte alle domande
+Sviluppo di una applicazione social in Laravel: un Q&A con valutazione delle risposte alle domande di vari argomenti
