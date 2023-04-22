@@ -2,16 +2,4 @@
 
 ## Progetto per la tesi di laurea triennale di informatica
 
-Durante il periodo di tirocinio come back-end developer presso l'azienda Caim ho potuto imparare Laravel, un ottimo framework che permette una soluzione aggiornata e creativa per lo sviluppo di applicazioni web in PHP.
-
-## MVC
-
-Il progetto è strutturato seguendo il modello Model View Controller, il quale permette di gestire le diverse componenti in modo separato, portando grandi vantaggi nella gestione del codice, che risulta meglio scalabile e mantenibile.
-
-- Model: metodi di accesso ai dati.
-- View:si occupa di visualizzare i dati all'utente e gestisce l'interazione fra quest'ultimo e l'infrastruttura sottostante
-- Controller: gestisce gli input della view e accede ai modelli richiesti.
-
-## Laravel Homestead
-
-Versione di Laravel ottimizzata per Vangrant 
+Sviluppo di una applicazione social in Laravel: un Q&A con valutazionde delle risposte alle domande
